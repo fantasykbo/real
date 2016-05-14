@@ -11,32 +11,47 @@ import java.util.ArrayList;
 import record.dao.RecordDAO;
 import record.dao.RecordDAOImpl;
 import record.dto.RecordDTO;
-import record.logic.ParseLogic;
-import record.logic.ParseLogicImpl;
+import record.logic.RecordLogic;
+import record.logic.RecordLogicImpl;
 
 
 public class RecordServiceImpl implements RecordService {
 
+	// 세부경기결과 크롤링
 	@Override
-	public String eventData(String eventId) {
-		String eventData = new String();
-		ParseLogic logic = new ParseLogicImpl();
+	public String eventRecordData(String eventId) {
+		String data = new String();
+		RecordLogic logic = new RecordLogicImpl();
 		try {
-			eventData = logic.eventData(eventId);
+			data = logic.eventRecordData(eventId);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("service : " + eventId + eventData);
-		return eventData;
+		System.out.println("service : " + eventId + data);
+		return data;
 	}
 
+	// 오늘경기일정결과 크롤링
 	@Override
-	public ArrayList<RecordDTO> eventList(String month) {
+	public String eventTodayData(String year, String month, String day) {
+		String data = new String();
+		RecordLogic logic = new RecordLogicImpl();
+		try {
+			data = logic.eventTodayData(year, month, day);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
+
+	// 경기일정결과 DB
+	@Override
+	public ArrayList<RecordDTO> eventList(String year, String month) {
 		ArrayList<RecordDTO> list = new ArrayList<RecordDTO>();
 		Connection con = getConnect();
 		RecordDAO dao = new RecordDAOImpl();
 		try {
-			list = dao.eventList(month, con);
+			list = dao.eventList(year, month, con);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -45,11 +60,4 @@ public class RecordServiceImpl implements RecordService {
 		return list;
 	}
 
-	@Override
-	public String eventListData(String year, String month) {
-		String eventListData = new String();
-		ParseLogic logic = new ParseLogicImpl();
-		eventListData = logic.eventListData(year, month);
-		return eventListData;
-	}
 }

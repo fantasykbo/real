@@ -16,6 +16,7 @@
  		var eventData = '<%=eventData%>';
  		var obj = JSON.parse(eventData);
 
+ 		// 시간 관련
  	    var gDayArr = new Array('일', '월', '화', '수', '목', '금', '토');
 
  	    var gDate = obj.gameInfo.gdate.toString();

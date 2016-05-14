@@ -1,4 +1,4 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="record.dto.RecordDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -12,58 +12,98 @@
 <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-<%
-	ArrayList<RecordDTO> eventList = (ArrayList<RecordDTO>) request.getAttribute("eventList");
-	int size = eventList.size();
+<script type="text/javascript">
+	<%
+		ArrayList<RecordDTO> eventList = (ArrayList<RecordDTO>) request.getAttribute("eventList");
+		String year = (String) request.getAttribute("year");
+		String month = (String) request.getAttribute("month");
+		String eventTodayData = (String) request.getAttribute("eventTodayData");
 
-%>
+		int size = eventList.size();
+		// 현재시간 구하기		
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		long nowDate = System.currentTimeMillis(); 
+	%>
+	$(document).ready(function() {
+ 		var eventTodayData = '<%= eventTodayData %>';
+ 		var obj = JSON.parse(eventTodayData);
+ 		var size = obj.games.length;
+ 		
+ 		
+
+		for(i = 0; i < size; i++) {
+			$("#" + obj.games[i].gameId + " #event-score").text("으하하하");		
+		}
+
+		// 같은 날짜 TD 합치기
+		$(".event-date").each(function () {
+		    var rows = $(".event-date:contains('" + $(this).text() + "')");
+		    if (rows.length > 1) {
+		        rows.eq(0).attr("rowspan", rows.length);
+		        rows.not(":eq(0)").remove(); 
+		    }
+		});
+	
+	});
+
+</script>
 </head>
 <body>
 	<div class="section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>
-						KBO리그 일정/결과 <br>
-					</h1>
+					<div class="page-header text-primary">
+						<h1>경기일정 / 결과</h1>
+					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<ul class="pager">
+					<ul class="lead pager">
 						<li><a href="#">← Prev</a></li>
-						<span>테스트</span>
+						<span><%= year %>. <%= month %></span>
 						<li><a href="#">Next →</a></li>
 					</ul>
-					<table class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped text-center">
 						<tbody>
+
 						<% for(int i = 0; i < size; i++) { 
 								RecordDTO dto = eventList.get(i);
-								%>
-							<tr>
-								<td><%= dto.getEventDate() %></td>
-								<td><%= dto.getEventDate() %></td>
-								<td>
-									<span><%= dto.getaTeamSName() %></span>
+								Date d = transFormat.parse(dto.getEventDate());
+								long eventDate = d.getTime();
+						%>
+
+							<tr id="<%= dto.getEventCode() %>">
+								<td class="event-date"><%= dto.getsEventDate() %></td>
+								<td><%= dto.getEventDate().substring(11, 16) %></td>
+								<td><%= dto.getaTeamSName() %></td>
+								<td id="event-score">
 									<% if(dto.getEventStatus() != null && dto.getEventStatus().equals("4")) { %>
-										<span><%= dto.getaScore() %> : <%= dto.gethScore() %></span>
+										<%= dto.getaScore() %> : <%= dto.gethScore() %>
 									<% } else { %>
-										<span> vs </span>
+										vs
 									<% } %>
-									<span><%= dto.gethTeamSName() %></span>
 								</td>
-								<td><%= dto.getEventCode() %></td>
+								<td><%= dto.gethTeamSName() %></td>
 								<td><%= dto.getStadium() %></td>
+								<td>
+									<% if (eventDate <= nowDate) { %>
+										<a class="btn btn-primary" href="eventRecord.do?eventId=<%= dto.getEventCode() %>">라이브스코어</a>
+										<a class="btn btn-warning" href="eventRecord.do?eventId=<%= dto.getEventCode() %>">경기결과</a>
+									<% } %>
+								</td>
 							</tr>
 							<% } %>
 						</tbody>
 						<thead>
 							<tr>
-								<th>날짜</th>
-								<th>시간</th>
-								<th>경기</th>
-								<th>중계/기록</th>
-								<th>구장</th>
+								<th class="text-center">날짜</th>
+								<th class="text-center">시간</th>
+								<th class="text-center" colspan="3">경기</th>
+								<th class="text-center">구장</th>
+								<th class="text-center">중계/기록</th>
+
 							</tr>
 						</thead>
 					</table>

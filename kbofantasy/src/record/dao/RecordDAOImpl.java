@@ -13,13 +13,13 @@ import record.dto.RecordDTO;
 public class RecordDAOImpl implements RecordDAO{
 
 	@Override
-	public ArrayList<RecordDTO> eventList(String month, Connection con)
+	public ArrayList<RecordDTO> eventList(String year, String month, Connection con)
 			throws SQLException {
 		
 		ArrayList<RecordDTO> list = new ArrayList<RecordDTO>();
 		RecordDTO dto = null;
 		PreparedStatement ptmt = con.prepareStatement(EVENT_LIST);
-		ptmt.setString(1, month);
+		ptmt.setString(1, year + month);
 		ResultSet rs = ptmt.executeQuery();
 		while(rs.next()){
 			dto = new RecordDTO(rs.getString(1),
@@ -31,7 +31,8 @@ public class RecordDAOImpl implements RecordDAO{
 								rs.getString(7),
 								rs.getString(8),
 								rs.getString(9),
-								rs.getString(10));
+								rs.getString(10),
+								rs.getString(11));
 			list.add(dto);
 		}
 		close(rs);

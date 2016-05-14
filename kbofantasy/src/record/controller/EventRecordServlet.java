@@ -14,20 +14,19 @@ import record.dto.RecordDTO;
 import record.service.RecordService;
 import record.service.RecordServiceImpl;
 // 세부경기결과페이지 서블릿
-@WebServlet(name = "record", urlPatterns = { "/record.do" })
+@WebServlet(name = "record", urlPatterns = { "/record/eventRecord.do" })
 public class EventRecordServlet extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("EUC-KR");
 		
-//		String eventId = req.getParameter("eventId");
-		String eventId = "20160402OBSS02016";
+		String eventId = request.getParameter("eventId");
 //		String pathurl = req.getParameter("pathurl");
 		String forwardview = "";
 		RecordService service = new RecordServiceImpl();
 		
-		forwardview = "asdasdrecord/eventRecord.jsp";
-		String eventData = service.eventData(eventId);
+		forwardview = "eventRecord.jsp";
+		String eventData = service.eventRecordData(eventId);
 		System.out.println("serrrrvlet : " + eventId + eventData);
 
 //		req.setAttribute("pathurl", pathurl);

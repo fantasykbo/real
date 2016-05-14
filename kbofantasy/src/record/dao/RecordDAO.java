@@ -7,6 +7,6 @@ import java.util.ArrayList;
 import record.dto.RecordDTO;
 
 public interface RecordDAO {
-	ArrayList<RecordDTO> eventList(String month, Connection con) throws SQLException;
-	
+	// 경기일정결과 DB
+	ArrayList<RecordDTO> eventList(String year, String month, Connection con) throws SQLException;
 }
