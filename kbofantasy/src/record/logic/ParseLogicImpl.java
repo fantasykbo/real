@@ -23,14 +23,11 @@ public class ParseLogicImpl implements ParseLogic{
 						.userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36")	// 유저에이전트 정의
 						.get();
 		
-		if(doc!=null) {
+		if(doc != null) {
 			Element elmt = doc.select("script").get(39);
-			System.out.println(doc.select("script").size());
-			System.out.println(elmt.toString());
-			
+
 			Pattern p = Pattern.compile("(?is)_data : (.+?),굈굏_homeTeamCode");	// JSON 형태의 게임기록 데이터의 패턴을 정규식으로 정의
 			Matcher m = p.matcher(elmt.html());	// 위에서 정의한 패턴을 40번째 script 태그가 있는 html 소스 안에서 매칭하도록 정의
-			
 			
 			while(m.find()) {
 				eventData = m.group(1);	// 

@@ -26,9 +26,9 @@ public class EventRecordServlet extends HttpServlet{
 		String forwardview = "";
 		RecordService service = new RecordServiceImpl();
 		
-		forwardview = "record/eventRecord.jsp";
+		forwardview = "asdasdrecord/eventRecord.jsp";
 		String eventData = service.eventData(eventId);
-		System.out.println("servlet : " + eventId + eventData);
+		System.out.println("serrrrvlet : " + eventId + eventData);
 
 //		req.setAttribute("pathurl", pathurl);
 		request.setAttribute("eventData", eventData);
