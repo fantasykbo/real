@@ -15,7 +15,7 @@ import record.service.RecordService;
 import record.service.RecordServiceImpl;
 // 세부경기결과페이지 서블릿
 @WebServlet(name = "record", urlPatterns = { "/record.do" })
-public class RecordParseServlet extends HttpServlet{
+public class EventRecordServlet extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("EUC-KR");
@@ -26,7 +26,7 @@ public class RecordParseServlet extends HttpServlet{
 		String forwardview = "";
 		RecordService service = new RecordServiceImpl();
 		
-		forwardview = "record.jsp";
+		forwardview = "record/eventRecord.jsp";
 		String eventData = service.eventData(eventId);
 		System.out.println("servlet : " + eventId + eventData);
 
