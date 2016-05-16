@@ -21,16 +21,16 @@ public class EventRecordServlet extends HttpServlet{
 		request.setCharacterEncoding("EUC-KR");
 		
 		String eventId = request.getParameter("eventId");
-//		String pathurl = req.getParameter("pathurl");
+		String pathurl = request.getParameter("pathurl");
 		String forwardview = "";
 		RecordService service = new RecordServiceImpl();
 		
-		forwardview = "eventRecord.jsp";
 		String eventData = service.eventRecordData(eventId);
 		System.out.println("serrrrvlet : " + eventId + eventData);
 
-//		req.setAttribute("pathurl", pathurl);
+		request.setAttribute("pathurl", pathurl);
 		request.setAttribute("eventData", eventData);
+		forwardview = "/layout/eventRecordLayout.jsp";
 
 		RequestDispatcher rd = request.getRequestDispatcher(forwardview);
 		rd.forward(request, response);

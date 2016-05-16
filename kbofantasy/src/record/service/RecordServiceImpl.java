@@ -59,5 +59,14 @@ public class RecordServiceImpl implements RecordService {
 		}
 		return list;
 	}
+	
+	// 한달치 크롤링(임시)
+	@Override
+	public String eventMonthData(String year, String month) {
+		String data = new String();
+		RecordLogic logic = new RecordLogicImpl();
+		data = logic.eventMonthData(year, month);
+		return data;
+	}
 
 }

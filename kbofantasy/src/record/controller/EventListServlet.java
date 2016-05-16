@@ -24,7 +24,7 @@ public class EventListServlet extends HttpServlet {
 		String month = request.getParameter("month");
 		year = "2016";
 		month = "05";
-//		String pathurl = request.getParameter("pathurl");
+		String pathurl = request.getParameter("pathurl");
 		
 		Calendar c = Calendar.getInstance();
 		String tYear = c.get(Calendar.YEAR) + "";
@@ -36,7 +36,7 @@ public class EventListServlet extends HttpServlet {
 		}
 		if(tDay.length() == 1) { 
 			tDay = "0" + tDay;
-		}	
+		}
 		
 		String forwardview = "";
 		RecordService service = new RecordServiceImpl();
@@ -44,14 +44,14 @@ public class EventListServlet extends HttpServlet {
 		ArrayList<RecordDTO> eventList = service.eventList(year, month);
 		String eventTodayData = service.eventTodayData(tYear, tMonth, tDay);
 	
-//		req.setAttribute("pathurl", pathurl);
+		request.setAttribute("pathurl", pathurl);
 		request.setAttribute("eventList", eventList);
 		request.setAttribute("year", year);
 		request.setAttribute("month", month);
 
 		request.setAttribute("eventTodayData", eventTodayData);
 
-		forwardview = "eventList.jsp";
+		forwardview = "/layout/recordLayout.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(forwardview);
 		rd.forward(request, response);
 	}

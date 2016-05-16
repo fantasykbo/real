@@ -20,27 +20,28 @@
 		String eventTodayData = (String) request.getAttribute("eventTodayData");
 
 		int size = eventList.size();
-		// 현재시간 구하기		
+		// 현재시간 구하기
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		long nowDate = System.currentTimeMillis(); 
-	%>
+		
+		%>
 	$(document).ready(function() {
  		var eventTodayData = '<%= eventTodayData %>';
  		var obj = JSON.parse(eventTodayData);
  		var size = obj.games.length;
- 		
- 		
-
-		for(i = 0; i < size; i++) {
-			$("#" + obj.games[i].gameId + " #event-score").text("으하하하");		
+ 
+ 		for(i = 0; i < size; i++) {
+			if(parseInt(obj.games[i].statusCode) >= 2) {
+	 			$("#" + obj.games[i].gameId + " #event-score").text(obj.games[i].score.aScore + " : " + obj.games[i].score.hScore);
+			}
 		}
 
 		// 같은 날짜 TD 합치기
 		$(".event-date").each(function () {
 		    var rows = $(".event-date:contains('" + $(this).text() + "')");
-		    if (rows.length > 1) {
-		        rows.eq(0).attr("rowspan", rows.length);
-		        rows.not(":eq(0)").remove(); 
+		    if(rows.length > 1) {
+				rows.eq(0).attr("rowspan", rows.length);
+				rows.not(":eq(0)").remove(); 
 		    }
 		});
 	
@@ -77,7 +78,7 @@
 							<tr id="<%= dto.getEventCode() %>">
 								<td class="event-date"><%= dto.getsEventDate() %></td>
 								<td><%= dto.getEventDate().substring(11, 16) %></td>
-								<td><%= dto.getaTeamSName() %></td>
+								<td><img src="/kbofantasy/images/icon/<%= dto.getaTeamCode() %>.png"/><%= dto.getaTeamSName() %></td>
 								<td id="event-score">
 									<% if(dto.getEventStatus() != null && dto.getEventStatus().equals("4")) { %>
 										<%= dto.getaScore() %> : <%= dto.gethScore() %>
@@ -85,12 +86,12 @@
 										vs
 									<% } %>
 								</td>
-								<td><%= dto.gethTeamSName() %></td>
+								<td><%= dto.gethTeamSName() %><img src="/kbofantasy/images/icon/<%= dto.gethTeamCode() %>.png"/></td>
 								<td><%= dto.getStadium() %></td>
 								<td>
 									<% if (eventDate <= nowDate) { %>
 										<a class="btn btn-primary" href="eventRecord.do?eventId=<%= dto.getEventCode() %>">라이브스코어</a>
-										<a class="btn btn-warning" href="eventRecord.do?eventId=<%= dto.getEventCode() %>">경기결과</a>
+										<a class="btn btn-warning" href="eventRecord.do?eventId=<%= dto.getEventCode() %>&pathurl=record/eventRecord.jsp">경기결과</a>
 									<% } %>
 								</td>
 							</tr>
