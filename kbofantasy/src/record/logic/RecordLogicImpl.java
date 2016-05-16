@@ -27,7 +27,7 @@ public class RecordLogicImpl implements RecordLogic{
 		if(doc != null) {
 			Element elmt = doc.select("script").get(39);
 
-			Pattern p = Pattern.compile("(?is)_data : (.+?),‚n‚t_homeTeamCode");	// JSON ÇüÅÂÀÇ °ÔÀÓ±â·Ï µ¥ÀÌÅÍÀÇ ÆĞÅÏÀ» Á¤±Ô½ÄÀ¸·Î Á¤ÀÇ
+			Pattern p = Pattern.compile("(?is)_data : (.+?),\n\t_homeTeamCode");	// JSON ÇüÅÂÀÇ °ÔÀÓ±â·Ï µ¥ÀÌÅÍÀÇ ÆĞÅÏÀ» Á¤±Ô½ÄÀ¸·Î Á¤ÀÇ
 			Matcher m = p.matcher(elmt.html());	// À§¿¡¼­ Á¤ÀÇÇÑ ÆĞÅÏÀ» 40¹øÂ° script ÅÂ±×°¡ ÀÖ´Â html ¼Ò½º ¾È¿¡¼­ ¸ÅÄªÇÏµµ·Ï Á¤ÀÇ
 			
 			while(m.find()) {
@@ -36,7 +36,7 @@ public class RecordLogicImpl implements RecordLogic{
 		} else {
 			System.out.println("·ÎÁ÷³Î");
 		}
-		eventRecordData = eventRecordData.replace("‚‚r‚‚n", "");
+		eventRecordData = eventRecordData.replace("\\r\\n", "");
 		System.out.println("logic : " + eventId + eventRecordData);
 		return eventRecordData;
 	}
@@ -59,7 +59,7 @@ public class RecordLogicImpl implements RecordLogic{
 			Element elmt = doc.select("script").first();
 			eventTodayData = elmt.html();
 			// ¾Õ µÚ·Î JSONÀÌ ¾Æ´Ñ ½ºÅ©¸³Æ® Âî²¨±â Á¦°Å
-			eventTodayData = eventTodayData.replace("document.domain=‚"naver.com‚";parent.sportscallback_gameList(document, ", "");
+			eventTodayData = eventTodayData.replace("document.domain=\"naver.com\";parent.sportscallback_gameList(document, ", "");
 			eventTodayData = eventTodayData.replace(");", "");
 		}
 		System.out.println("logic : " + year + month + day + eventTodayData);
@@ -102,14 +102,14 @@ public class RecordLogicImpl implements RecordLogic{
 			if(doc!=null) {
 				Element elmt = doc.select("script").first();
 				str = elmt.html();
-				str = str.replace("document.domain=‚"naver.com‚";parent.sportscallback_gameList(document, ", "");
+				str = str.replace("document.domain=\"naver.com\";parent.sportscallback_gameList(document, ", "");
 				str = str.replace(");", "");
 				
 			} else {
-				str = "‚"none‚"";
+				str = "\"none\"";
 			}
 
-			str = "‚"" + year + month + day + "‚":" + str + ",";
+			str = "\"" + year + month + day + "\":" + str + ",";
 			data += str;
 		}
 		data = data.substring(0, data.length() - 1);

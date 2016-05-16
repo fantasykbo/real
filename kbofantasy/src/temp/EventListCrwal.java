@@ -42,14 +42,14 @@ public class EventListCrwal {
 			if(doc!=null) {
 				Element elmt = doc.select("script").first();
 				str = elmt.html();
-				str = str.replace("document.domain=‚"naver.com‚";parent.sportscallback_gameList(document, ", "");
+				str = str.replace("document.domain=\"naver.com\";parent.sportscallback_gameList(document, ", "");
 				str = str.replace(");", "");
 				
 			} else {
-				str = "‚"none‚"";
+				str = "\"none\"";
 			}
 
-			str = "‚"" + year + month + day + "‚":" + str + ",";
+			str = "\"" + year + month + day + "\":" + str + ",";
 			data += str;
 		}
 		data = data.substring(0, data.length() - 1);

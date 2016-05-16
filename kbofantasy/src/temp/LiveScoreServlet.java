@@ -28,7 +28,7 @@ public class LiveScoreServlet extends HttpServlet {
 		JSONObject kboObj = null;
 		JSONParser jsonp = new JSONParser();
 		String kbo = script.html();
-		kbo = kbo.replace("document.domain=‚"naver.com‚";parent.sportscallback_relay(document, ", "");
+		kbo = kbo.replace("document.domain=\"naver.com\";parent.sportscallback_relay(document, ", "");
 		kbo = kbo.replace(");", "");
 		System.out.println(kbo+"first");
 		try {
