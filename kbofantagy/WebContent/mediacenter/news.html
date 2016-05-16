@@ -1,0 +1,91 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript"
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
+	rel="stylesheet" type="text/css">
+	<script type="text/javascript">
+         $(document).ready(function(){
+        	getNews("전체보기");
+            $(".list-group-item").click(function(){
+               str = $(this).text();
+               getNews(str);
+            });
+            
+            function getNews(teamname){
+     			
+     			var xhr = new XMLHttpRequest();
+     			myul= document.getElementById("newslist");
+     			mysmall=document.getElementById("title");
+     			xhr.onreadystatechange = function(){
+     				if(xhr.readyState==4 && xhr.status==200){
+     					myul.innerHTML = xhr.responseText;
+     					mysmall.innerHTML = teamname;
+     				}
+     			}
+     			xhr.open("GET", "/kbofantagy/search.do?teamname="+teamname, true);
+     			xhr.send();
+     			
+     		}
+            
+         });
+ 
+      </script>
+
+</head>
+<body>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="page-header text-primary">
+						<h1>
+							뉴스센터 <small id="title"></small>
+						</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-10">
+					<ul class="media-list" id="newslist"></ul>
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<ul class="pagination">
+								<li><a href="#">05/12 (목)</a></li>
+								<li><a href="#">05/13 (금)</a></li>
+								<li class="active"><a href="#">05/14 (토)</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<ul class="list-group text-center">
+						<li class="list-group-item">전체보기</li>
+						<li class="list-group-item">두산베어스</li>
+						<li class="list-group-item">삼성라이온즈</li>
+						<li class="list-group-item">NC다이노스</li>
+						<li class="list-group-item">넥센히어로즈</li>
+						<li class="list-group-item">SK와이번스</li>
+						<li class="list-group-item">한화이글스</li>
+						<li class="list-group-item">KIA타이거즈</li>
+						<li class="list-group-item">롯데자이언츠</li>
+						<li class="list-group-item">LG트윈스</li>
+						<li class="list-group-item">kt위즈</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
