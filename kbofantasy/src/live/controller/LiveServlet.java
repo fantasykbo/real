@@ -28,7 +28,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-@WebServlet(name = "livescore", urlPatterns = { "/livescore.do" })
+@WebServlet(name = "livetext", urlPatterns = { "/livetext.do" })
 public class LiveServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");

@@ -72,7 +72,7 @@
  				 }  
     })
     
-    function runAjax(){
+/*     function runAjax(){
 		//step1. 객체생성
 		var xhr = new XMLHttpRequest();
 		mydiv = document.getElementById("mydiv");
@@ -89,7 +89,7 @@
 		
 		//step4. 요청보내기
 		xhr.send();
-	}
+	} */
 </script>
 </head>
 <body>
