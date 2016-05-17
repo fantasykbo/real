@@ -1,5 +1,5 @@
 package live.service;
 
 public interface LiveService {
-	String printlivetext(String schedule);
+	String printlivetext(String eventId);
 }

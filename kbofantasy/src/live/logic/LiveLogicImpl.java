@@ -11,8 +11,8 @@ import org.jsoup.select.Elements;
 public class LiveLogicImpl implements LiveLogic {
 
 	@Override
-	public String printlivetext(String schedule) {
-		String Url = "http://sportsdata.naver.com/ndata//kbo/2016/"+schedule+".nsd";	// 颇教且 林家
+	public String printlivetext(String eventId) {
+		String Url = "http://sportsdata.naver.com/ndata//kbo/2016/05/"+eventId+".nsd";	// 颇教且 林家
 		Document doc = null;
 		try {
 			doc = Jsoup.connect(Url).get();

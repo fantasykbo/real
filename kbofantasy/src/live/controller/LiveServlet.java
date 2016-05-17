@@ -32,11 +32,12 @@ import org.jsoup.select.Elements;
 public class LiveServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		//
-		String Inn = request.getParameter("Inn");
+		
+		//String Inn = request.getParameter("Inn");
+		String eventId = "20160510OBSK02016";
 		String forwardview="";
 		LiveService logic = new LiveServiceImpl();
-		String kbo = logic.printlivetext(nsd);
+		String kbo = logic.printlivetext(eventId);
 //		System.out.println(kbo+"first");
 /*		try {
 			kboObj = (JSONObject)jsonp.parse(kbo);
