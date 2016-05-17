@@ -13,7 +13,7 @@
 
  	$(document).ready(function() {
 
- 		var eventData = '<%=eventData%>';
+ 		var eventData = '<%= eventData %>';
  		var obj = JSON.parse(eventData);
 
  		// 시간 관련
