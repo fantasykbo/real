@@ -42,7 +42,6 @@
                 rel = obj.relayTexts;
  				curBat = rel.currentBatter.liveText;
  				curTxtSize = rel.currentBatterTexts.length;
- 				alert(Inn);
  				
  				$("#awaylogo").attr("src","http://imgsports.naver.net/images/emblem/new/kbo/default/"+obj.gameInfo.aCode+".png");
  				$("#homelogo").attr("src","http://imgsports.naver.net/images/emblem/new/kbo/default/"+obj.gameInfo.hCode+".png");
@@ -72,6 +71,7 @@
  				<%-- href="javascript:runAjax('<%= deptInfo.getDeptno() %>')" --%>
                 
                 Totaltext();
+                
                 //종료된 게임일 경우 바로 서블릿 호출
                 //진행중인 게임일 경우 Ajax호출
                 if(obj.gameInfo.statusCode==4){ 
@@ -84,9 +84,9 @@
     	 			}
                 }else{      	
                 	if(Inn<10){	 				
-    		 			for(i=1;i<=curInn;i++){
-    		 				inn = $('#page'+i).text();
-    		 				$("#page"+i).attr("href","javascript:Ajax('<%=month%>','<%=eventId%>',"+inn+")");		 				
+    		 			for(i=1;i<=curInn;i++){				   		 				
+    		 				$("#page"+i).attr("href","javascript:Ajax('<%=month%>','<%=eventId%>',"+$('#page'+i).text()+")");
+    		 				ajaxInn = $('#page'+i).text();
     		 			}
     	 			}else{
     	 				inn = $('#page'+i).text();
@@ -101,18 +101,21 @@
 
     })
 	function Ajax(month, eventId, Inn) {
-		$(".page").on("click", function(){
+		$(".page").on("click", function(){		
+			selectInn = Inn;
 			$.get("/kbofantasy/livetext.do",{"month":month,"eventId":eventId,"Inn":Inn,"path":"ajax"},live);
 		});
 	};
 	function live(txt){	//서버와 통신이 성공하면 처리결과를 success에 지정한 함수를 호출하며 넘겨준다.
 		kbo = txt;
-		Inn = inn;
+		/* Inn = Inn; */
+		Inn = selectInn;
         obj = JSON.parse(kbo);
         curInn = obj.currentInning;
         rel = obj.relayTexts;
 		curBat = rel.currentBatter.liveText;
 		curTxtSize = rel.currentBatterTexts.length;
+		
 /* 		if(Inn==curInn){
 			
 		}else{ */
