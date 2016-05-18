@@ -17,25 +17,62 @@
 		ArrayList<RecordDTO> eventList = (ArrayList<RecordDTO>) request.getAttribute("eventList");
 		String year = (String) request.getAttribute("year");
 		String month = (String) request.getAttribute("month");
+		
 		String eventTodayData = (String) request.getAttribute("eventTodayData");
 
 		int size = eventList.size();
+		
 		// 현재시간 구하기
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		long nowDate = System.currentTimeMillis(); 
+		long nowDate = System.currentTimeMillis();
 		
 		%>
 	$(document).ready(function() {
  		var eventTodayData = '<%= eventTodayData %>';
  		var obj = JSON.parse(eventTodayData);
- 		var size = obj.games.length;
  
+		// 오늘자 실시간 스코어 받아오기
+ 		var size = obj.games.length;
  		for(i = 0; i < size; i++) {
-			if(parseInt(obj.games[i].statusCode) >= 2) {
-	 			$("#" + obj.games[i].gameId + " #event-score").text(obj.games[i].score.aScore + " : " + obj.games[i].score.hScore);
-			}
-		}
+			switch(obj.games[i].statusCode) {
+				case "1" :
+					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"active btn btn-danger btn-sm\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "\">문자중계</a>&nbsp;&nbsp;");
+		 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm disabled\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=record/eventRecord.jsp\">경기기록</a>");
+					break;
+					
+				case "2" :
+				case "3" :
+					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"active btn btn-danger btn-sm\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "\">문자중계</a>&nbsp;&nbsp;");
+		 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm disabled\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=record/eventRecord.jsp\">경기기록</a>");
+		 			$("#" + obj.games[i].gameId + " #event-score").text(obj.games[i].score.aScore + " (" + obj.games[i].inn + ") " + obj.games[i].score.hScore);
+				break;
 
+				case "4" :
+					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-primary btn-sm\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "\">문자중계</a>&nbsp;&nbsp;");
+		 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=record/eventRecord.jsp\">경기기록</a>");
+		 			$("#" + obj.games[i].gameId + " #event-score").text(obj.games[i].score.aScore + " (종료) " + obj.games[i].score.hScore);
+		 			break;
+					
+			}
+ 		}
+
+ 		// 이전달, 다음달 링크 생성
+ 		var year = <%= year %>
+ 		var month = <%= month %>
+ 		var prevMonth = month - 1;
+ 		var nextMonth = month + 1;
+		
+ 		if(prevMonth >= 4) {
+ 			$("#prevMonth").attr("href", "/kbofantasy/record/eventList.do?year=" + year + "&month=" + "0" + prevMonth + "&pathurl=record/eventList.jsp");
+ 		} else {
+ 			$("#prevMonth").attr("href", "javascript:alert('이전 경기가 없습니다.')");
+ 		}
+ 		if(nextMonth <= 9) {
+			$("#nextMonth").attr("href", "/kbofantasy/record/eventList.do?year=" + year + "&month=" + "0" + nextMonth + "&pathurl=record/eventList.jsp");
+ 		} else {
+ 			$("#nextMonth").attr("href", "javascript:alert('다음 경기가 없습니다.')");
+ 		}		
+ 		
 		// 같은 날짜 TD 합치기
 		$(".event-date").each(function () {
 		    var rows = $(".event-date:contains('" + $(this).text() + "')");
@@ -62,9 +99,10 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="lead pager">
-						<li><a href="#">← Prev</a></li>
+						<li><a id="prevMonth" href="#">← Prev</a></li>
 						<span><%= year %>. <%= month %></span>
-						<li><a href="#">Next →</a></li>
+						<li><a id="nextMonth" href="#">Next →</a></li>
+
 					</ul>
 					<table class="table table-bordered table-striped text-center">
 						<tbody>
@@ -80,7 +118,7 @@
 								<td><%= dto.getEventDate().substring(11, 16) %></td>
 								<td><img src="/kbofantasy/images/icon/<%= dto.getaTeamCode() %>.png"/><%= dto.getaTeamSName() %></td>
 								<td id="event-score">
-									<% if(dto.getEventStatus() != null && dto.getEventStatus().equals("4")) { %>
+									<% if(dto.getEventStatus().equals("4")) { %>
 										<%= dto.getaScore() %> : <%= dto.gethScore() %>
 									<% } else { %>
 										vs
@@ -88,10 +126,12 @@
 								</td>
 								<td><%= dto.gethTeamSName() %><img src="/kbofantasy/images/icon/<%= dto.gethTeamCode() %>.png"/></td>
 								<td><%= dto.getStadium() %></td>
-								<td>
-									<% if (eventDate <= nowDate) { %>
-										<a class="btn btn-primary" href="eventRecord.do?eventId=<%= dto.getEventCode() %>">라이브스코어</a>
-										<a class="btn btn-warning" href="eventRecord.do?eventId=<%= dto.getEventCode() %>&pathurl=record/eventRecord.jsp">경기결과</a>
+								<td id="event-btn">
+									<% if(dto.getCancelFlag().equals("Y")) { %>
+										<span>해당 경기는 현지 사정에 의해 취소되었습니다.</span>
+									<% } else if(dto.getEventStatus().equals("4")){ %>
+										<a class="btn btn-primary btn-sm" href="eventRecord.do?eventId=<%= dto.getEventCode() %>">문자중계</a>&nbsp;
+										<a class="btn btn-warning btn-sm" href="eventRecord.do?eventId=<%= dto.getEventCode() %>&pathurl=record/eventRecord.jsp">경기기록</a>
 									<% } %>
 								</td>
 							</tr>

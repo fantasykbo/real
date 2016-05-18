@@ -22,8 +22,6 @@ public class EventListServlet extends HttpServlet {
 		request.setCharacterEncoding("EUC-KR");
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
-		year = "2016";
-		month = "05";
 		String pathurl = request.getParameter("pathurl");
 		
 		Calendar c = Calendar.getInstance();

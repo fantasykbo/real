@@ -9,6 +9,7 @@ public class RecordDTO {
 	public String aScore;
 	public String hScore;
 	public String eventStatus;
+	public String cancelFlag;
 	public String aTeamSName;
 	public String hTeamSName;
 	public String sEventDate;
@@ -16,7 +17,7 @@ public class RecordDTO {
 	public RecordDTO() {}
 	public RecordDTO(String eventCode, String eventDate, String aTeamCode,
 			String hTeamCode, String stadium, String aScore, String hScore,
-			String eventStatus, String aTeamSName, String hTeamSName, String sEventDate) {
+			String eventStatus, String cancelFlag, String aTeamSName, String hTeamSName, String sEventDate) {
 		super();
 		this.eventCode = eventCode;
 		this.eventDate = eventDate;
@@ -26,6 +27,7 @@ public class RecordDTO {
 		this.aScore = aScore;
 		this.hScore = hScore;
 		this.eventStatus = eventStatus;
+		this.cancelFlag = cancelFlag;
 		this.aTeamSName = aTeamSName;
 		this.hTeamSName = hTeamSName;
 		this.sEventDate = sEventDate;
@@ -78,6 +80,12 @@ public class RecordDTO {
 	public void setEventStatus(String eventStatus) {
 		this.eventStatus = eventStatus;
 	}
+	public String getCancelFlag() {
+		return cancelFlag;
+	}
+	public void setCancelFlag(String cancelFlag) {
+		this.cancelFlag = cancelFlag;
+	}
 	public String getaTeamSName() {
 		return aTeamSName;
 	}
@@ -101,9 +109,9 @@ public class RecordDTO {
 		return "RecordDTO [eventCode=" + eventCode + ", eventDate=" + eventDate
 				+ ", aTeamCode=" + aTeamCode + ", hTeamCode=" + hTeamCode
 				+ ", stadium=" + stadium + ", aScore=" + aScore + ", hScore="
-				+ hScore + ", eventStatus=" + eventStatus + ", aTeamSName="
-				+ aTeamSName + ", hTeamSName=" + hTeamSName + ", sEventDate="
-				+ sEventDate + "]";
+				+ hScore + ", eventStatus=" + eventStatus + ", cancelFlag="
+				+ cancelFlag + ", aTeamSName=" + aTeamSName + ", hTeamSName="
+				+ hTeamSName + ", sEventDate=" + sEventDate + "]";
 	}
-
+	
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import record.dao.RecordDAO;
 import record.dao.RecordDAOImpl;
+import record.dto.PlayerDTO;
 import record.dto.RecordDTO;
 import record.logic.RecordLogic;
 import record.logic.RecordLogicImpl;
@@ -59,6 +60,14 @@ public class RecordServiceImpl implements RecordService {
 		}
 		return list;
 	}
+
+	// 기록실 선수 기록 파싱 로직
+	@Override
+	public ArrayList<PlayerDTO> playerRecordData(String eventId, String eventRecordData) {
+		ArrayList<PlayerDTO> list = new ArrayList<PlayerDTO>();
+		
+		return null;
+	}
 	
 	// 한달치 크롤링(임시)
 	@Override
@@ -68,5 +77,5 @@ public class RecordServiceImpl implements RecordService {
 		data = logic.eventMonthData(year, month);
 		return data;
 	}
-
+	
 }
