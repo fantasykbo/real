@@ -91,6 +91,24 @@ public class KBODAOImpl implements KBODAO{
 		return result;
 	}
 
+
+	@Override
+	public int memberleave(String email, String password, Connection con)
+			throws SQLException {
+		PreparedStatement ptmt = con.prepareStatement(MEMBER_LEAVE);
+		ptmt.setString(1, email);
+		ptmt.setString(2,password);
+		
+		KBOLoginDTO mylog = null;
+		
+		int result = ptmt.executeUpdate();
+		close(ptmt);
+		
+		System.out.println("dao¿« result:"+result);
+
+		return result;
+	}
+
 }
 
 

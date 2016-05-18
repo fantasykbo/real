@@ -7,4 +7,5 @@ public interface KBOService {
 	KBOLoginDTO register(KBOLoginDTO register);
 	boolean emailcheck(String email);
 	boolean passcheck(String password);
+	int memberleave(String email,String password);
 }
