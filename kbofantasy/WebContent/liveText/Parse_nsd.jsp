@@ -42,7 +42,6 @@
                 rel = obj.relayTexts;
  				curBat = rel.currentBatter.liveText;
  				curTxtSize = rel.currentBatterTexts.length;
- 			    alert(curInn);
  				alert(Inn);
  				
  				$("#awaylogo").attr("src","http://imgsports.naver.net/images/emblem/new/kbo/default/"+obj.gameInfo.aCode+".png");
@@ -57,29 +56,50 @@
 				$("#homePlayer").append("<h4 class='text-center' id=h_name></h4>");
 				$("#h_name").text(obj.currentPlayers.home.playerInfo.name +
 								"  /  "+ obj.currentPlayers.home.playerInfo.hitType);
-				
+				$("#tbody").append()
+				/* alert(obj.scoreBoard.inn.home.length); */
+				/* if(obj.scoreBoard.inn.home.)
+				ascoresize = obj.scoreBoard.inn.home.length;
+				hscoresize = obj.scoreBoard.inn.home.length;
+				for(i=0; i<ascoresize; i++){
+					$(score)
+				} */
                 /* <h3 class="text-center">Thumbnail label</h3>
                 <p class="text-center">obj.currentPlayers.away.playerInfo.name</p> */
                 /* +obj.currentPlayers.away.playerInfo.name +
 				"/t"+obj.currentPlayers.away.playerInfo.hitType */
  				//Inn link걸기
  				<%-- href="javascript:runAjax('<%= deptInfo.getDeptno() %>')" --%>
-	 			if(Inn<10){
-	 				
-		 			for(i=1;i<=curInn;i++){
-		 				inn = $('#page'+i).text();
-		 				$("#page"+i).attr("href","javascript:Ajax('<%=month%>','<%=eventId%>',"+inn+")");	 					
-		 				
-		 			}
-	 			}else{
-	 				inn = $('#page'+i).text();
-	 				$("#pageext").attr("href","javascript:Ajax('<%=month%>','<%=eventId%>',"+curInn+")");
-	 			}
+                
+                Totaltext();
+                //종료된 게임일 경우 바로 서블릿 호출
+                //진행중인 게임일 경우 Ajax호출
+                if(obj.gameInfo.statusCode==4){ 
+                	if(Inn<10){
+    		 			for(i=1;i<=curInn;i++){
+    		 				$("#page"+i).attr("href","javascript:refresh("+$("#page"+i).text()+")");    		 				
+    		 			}
+    	 			}else{
+    	 				$("#pageext").attr("href","javascript:refresh("+curInn+")");
+    	 			}
+                }else{      	
+                	if(Inn<10){	 				
+    		 			for(i=1;i<=curInn;i++){
+    		 				inn = $('#page'+i).text();
+    		 				$("#page"+i).attr("href","javascript:Ajax('<%=month%>','<%=eventId%>',"+inn+")");		 				
+    		 			}
+    	 			}else{
+    	 				inn = $('#page'+i).text();
+    	 				$("#pageext").attr("href","javascript:Ajax('<%=month%>','<%=eventId%>',"+curInn+")");
+    	 			}
+                }
+ 				
+                
 	 			
-	 			Totaltext();	 			
+	 			
+	 				 			
 
     })
-    
 	function Ajax(month, eventId, Inn) {
 		$(".page").on("click", function(){
 			$.get("/kbofantasy/livetext.do",{"month":month,"eventId":eventId,"Inn":Inn,"path":"ajax"},live);
@@ -93,7 +113,12 @@
         rel = obj.relayTexts;
 		curBat = rel.currentBatter.liveText;
 		curTxtSize = rel.currentBatterTexts.length;
-		Totaltext();
+/* 		if(Inn==curInn){
+			
+		}else{ */
+			refresh(Inn);
+		/* } */
+		
 		/* $("#live").children().html("get"+txt);	//document.getElementByid().innerhtml = xhr.responseText와 동일 */
 	}
     function Totaltext(){
@@ -107,6 +132,7 @@
 	 		 	$("#live").children().append("<li>============================</li>"); 		 	 			
 	 		}
 	 		//경기가 아직 진행중일때
+	 		
 			curBatText();
 			gametext(Inn);
 	 	}else{
@@ -149,6 +175,11 @@
 			$("#live").children().append("<li>----------------------------</li>");
 	}
 	
+	function refresh(inn){
+		Inn = inn;
+		$("#live1").empty();
+		Totaltext();
+	}
 	
 </script>
 </head>
@@ -236,7 +267,7 @@
 								<th>B</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="score">
 							<tr>
 								<td>LG</td>
 								<td>99</td>
