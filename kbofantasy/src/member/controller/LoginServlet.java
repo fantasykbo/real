@@ -1,4 +1,4 @@
-package kbo.controller;
+package member.controller;
 
 import java.io.IOException;
 
@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kbo.login.dto.KBOLoginDTO;
-import kbo.service.KBOService;
-import kbo.service.KBOServiceImpl;
+import member.dto.KBOLoginDTO;
+import member.service.KBOService;
+import member.service.KBOServiceImpl;
 
 /**
  * Servlet implementation class KBOLoginServlet

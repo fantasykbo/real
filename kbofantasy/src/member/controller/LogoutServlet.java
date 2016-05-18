@@ -1,4 +1,4 @@
-package kbo.controller;
+package member.controller;
 
 import java.io.IOException;
 

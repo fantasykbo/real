@@ -1,9 +1,9 @@
-package kbo.dao;
+package member.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import kbo.login.dto.KBOLoginDTO;
+import member.dto.KBOLoginDTO;
 
 public interface KBODAO {
 	KBOLoginDTO login(String id, String pass,Connection con) 

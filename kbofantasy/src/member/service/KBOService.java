@@ -1,6 +1,6 @@
-package kbo.service;
+package member.service;
 
-import kbo.login.dto.*;
+import member.dto.*;
 
 public interface KBOService {
 	KBOLoginDTO login(String email,String password);

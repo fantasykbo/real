@@ -1,4 +1,4 @@
-package kbo.controller;
+package member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kbo.service.KBOService;
-import kbo.service.KBOServiceImpl;
+import member.service.KBOService;
+import member.service.KBOServiceImpl;
 
 /**
  * Servlet implementation class EmailCheckServlet

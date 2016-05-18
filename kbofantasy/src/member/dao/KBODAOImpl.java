@@ -1,4 +1,4 @@
-package kbo.dao;
+package member.dao;
 
 import static fw.JdbcTemplate.*;
 import static fw.Query.*;
@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import kbo.login.dto.KBOLoginDTO;
+import member.dto.KBOLoginDTO;
 
 public class KBODAOImpl implements KBODAO{
 

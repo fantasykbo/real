@@ -1,4 +1,4 @@
-package kbo.service;
+package member.service;
 
 import static fw.JdbcTemplate.close;
 import static fw.JdbcTemplate.getConnect;
@@ -6,9 +6,9 @@ import static fw.JdbcTemplate.getConnect;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import kbo.dao.KBODAO;
-import kbo.dao.KBODAOImpl;
-import kbo.login.dto.KBOLoginDTO;
+import member.dao.KBODAO;
+import member.dao.KBODAOImpl;
+import member.dto.KBOLoginDTO;
 
 public class KBOServiceImpl implements KBOService {
 

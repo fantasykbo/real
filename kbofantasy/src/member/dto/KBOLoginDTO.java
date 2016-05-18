@@ -1,4 +1,4 @@
-package kbo.login.dto;
+package member.dto;
 
 public class KBOLoginDTO {
 	private int member_cd;
