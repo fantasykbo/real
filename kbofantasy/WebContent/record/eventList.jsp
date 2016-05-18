@@ -130,7 +130,7 @@
 									<% if(dto.getCancelFlag().equals("Y")) { %>
 										<span>해당 경기는 현지 사정에 의해 취소되었습니다.</span>
 									<% } else if(dto.getEventStatus().equals("4")){ %>
-										<a class="btn btn-primary btn-sm" href="eventRecord.do?eventId=<%= dto.getEventCode() %>">문자중계</a>&nbsp;
+										<a class="btn btn-primary" href="/kbofantasy/livetext.do?eventId=<%= dto.getEventCode() %>&month=<%= month %>">라이브스코어</a>
 										<a class="btn btn-warning btn-sm" href="eventRecord.do?eventId=<%= dto.getEventCode() %>&pathurl=record/eventRecord.jsp">경기기록</a>
 									<% } %>
 								</td>
