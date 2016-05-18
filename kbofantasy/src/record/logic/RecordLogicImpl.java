@@ -99,8 +99,8 @@ public class RecordLogicImpl implements RecordLogic{
 			
 			dto.setEventCode(eventId);
 			dto.setPlayerCode((String) batterAwayPlayer.get("playerCode"));
-//			dto.setHra((float) batterAwayPlayer.get("hra"));
-			
+			float hra = Float.valueOf((String) batterAwayPlayer.get("hra"));
+			dto.setHra(hra);
 
 			// inn1 ~ inn12 까지 데이터 찾는 for 시작
 			for (int j = 1; j <= 12; j++) {
@@ -117,14 +117,11 @@ public class RecordLogicImpl implements RecordLogic{
 					} else {
 						Categorize(str, dto);
 					}
+					int pa = Integer.parseInt(batter.AwayPlayer.get());
+					
 				}
 			}
 			list.add(dto);
-		}
-
-		// 결과 출력
-		for (int z = 0; z < list.size(); z++) {
-			System.out.println(list.get(z).toString());
 		}
 		return list;
 	}
@@ -161,14 +158,14 @@ public class RecordLogicImpl implements RecordLogic{
 				System.out.println(bat + " : 홈런");
 				break;
 
-			case "4":
+			case "구":
 				dto.setBb(dto.getBb() + 1);
-				System.out.println(bat + " : 고의4구");
+				System.out.println(bat + " : 4사구");
 				break;
 
-			case "구":
+			case "4":
 				dto.setIb(dto.getIb() + 1);
-				System.out.println(bat + " : 4사구");
+				System.out.println(bat + " : 고의4구");
 				break;
 
 			case "낫":

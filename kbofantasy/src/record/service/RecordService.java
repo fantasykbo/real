@@ -16,7 +16,7 @@ public interface RecordService {
 	String eventTodayData(String year, String month, String day);
 	
 	// 기록실 선수기록 파싱(from Logic)
-	ArrayList<PlayerDTO> playerRecordData(String eventId, String eventRecordData);
+	ArrayList<PlayerDTO> playerRecordData(String eventId);
 
 	
 	// 경기일정결과 DB(from DAO(

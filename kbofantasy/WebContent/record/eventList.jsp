@@ -36,19 +36,19 @@
  		for(i = 0; i < size; i++) {
 			switch(obj.games[i].statusCode) {
 				case "1" :
-					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"active btn btn-danger btn-sm\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "\">문자중계</a>&nbsp;&nbsp;");
+					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"active btn btn-danger btn-sm\" href=\"/kbofantasy/livetext.do?eventId=" + obj.games[i].gameId + "&month=<%= month %>\">문자중계</a>&nbsp;&nbsp;");
 		 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm disabled\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=record/eventRecord.jsp\">경기기록</a>");
 					break;
 					
 				case "2" :
 				case "3" :
-					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"active btn btn-danger btn-sm\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "\">문자중계</a>&nbsp;&nbsp;");
+					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"active btn btn-danger btn-sm\" href=\"/kbofantasy/livetext.do?eventId=" + obj.games[i].gameId + "&month=<%= month %>\">문자중계</a>&nbsp;&nbsp;");
 		 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm disabled\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=record/eventRecord.jsp\">경기기록</a>");
 		 			$("#" + obj.games[i].gameId + " #event-score").text(obj.games[i].score.aScore + " (" + obj.games[i].inn + ") " + obj.games[i].score.hScore);
 				break;
 
 				case "4" :
-					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-primary btn-sm\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "\">문자중계</a>&nbsp;&nbsp;");
+					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-primary btn-sm\" href=\"/kbofantasy/livetext.do?eventId=" + obj.games[i].gameId + "&month=<%= month %>\">문자중계</a>&nbsp;&nbsp;");
 		 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=record/eventRecord.jsp\">경기기록</a>");
 		 			$("#" + obj.games[i].gameId + " #event-score").text(obj.games[i].score.aScore + " (종료) " + obj.games[i].score.hScore);
 		 			break;

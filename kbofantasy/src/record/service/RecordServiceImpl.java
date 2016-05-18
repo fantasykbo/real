@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.json.simple.parser.ParseException;
+
 import record.dao.RecordDAO;
 import record.dao.RecordDAOImpl;
 import record.dto.PlayerDTO;
@@ -63,10 +65,20 @@ public class RecordServiceImpl implements RecordService {
 
 	// 기록실 선수 기록 파싱 로직
 	@Override
-	public ArrayList<PlayerDTO> playerRecordData(String eventId, String eventRecordData) {
+	public ArrayList<PlayerDTO> playerRecordData(String eventId) {
 		ArrayList<PlayerDTO> list = new ArrayList<PlayerDTO>();
+		RecordLogic logic = new RecordLogicImpl();
+		try {
+			String eventRecordData = logic.eventRecordData(eventId);
+			list = logic.playerRecordData(eventId, eventRecordData);
+			
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
-		return null;
+		return list;
 	}
 	
 	// 한달치 크롤링(임시)
