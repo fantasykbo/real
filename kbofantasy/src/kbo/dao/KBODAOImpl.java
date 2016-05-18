@@ -75,6 +75,22 @@ public class KBODAOImpl implements KBODAO{
 		return result;
 	}
 
+
+	@Override
+	public boolean passCheck(Connection con, String password)
+			throws SQLException {
+		boolean result = false;
+		PreparedStatement ptmt = con.prepareStatement(passCheck);
+		ptmt.setString(1, password);
+		ResultSet rs = ptmt.executeQuery();
+		if (rs.next()) {
+			System.out.println("데이터있음");
+			result = true;
+		}
+		close(rs, ptmt, null);
+		return result;
+	}
+
 }
 
 

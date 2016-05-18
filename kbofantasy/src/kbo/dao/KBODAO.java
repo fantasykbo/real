@@ -12,5 +12,7 @@ public interface KBODAO {
 	KBOLoginDTO register(KBOLoginDTO register, Connection con) throws SQLException;
 
 	boolean regemailCheck(Connection con, String email)throws SQLException;
+
+	boolean passCheck(Connection con, String password) throws SQLException;
 	
 }

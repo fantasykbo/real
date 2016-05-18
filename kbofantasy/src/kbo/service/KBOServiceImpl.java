@@ -62,4 +62,19 @@ public class KBOServiceImpl implements KBOService {
 		obj.emailcheck("kim@naver.com");
 	}
 
+	@Override
+	public boolean passcheck(String password) {
+		Connection con = getConnect();
+		KBODAO dao = new KBODAOImpl();
+		boolean result = false;
+		
+		try {
+			result = dao.passCheck(con, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close(null, null, con);
+		return result;
+	}
+
 }
