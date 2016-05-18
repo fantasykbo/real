@@ -1,6 +1,6 @@
 package live.logic;
 
 public interface LiveLogic {
-	String printlivetext(String eventId);
+	String printlivetext(String eventId, String month);
 	
 }

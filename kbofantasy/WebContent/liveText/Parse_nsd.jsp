@@ -17,79 +17,105 @@
 <title>Insert title here</title>
 <%
 	String kbo = (String)request.getAttribute("kbo");
- 	JSONParser jsonp = new JSONParser();
-	JSONObject kboObj = (JSONObject)jsonp.parse(kbo); 
+	int Inn = (int)request.getAttribute("Inn");
+	String eventId = (String)request.getAttribute("eventId");
+	String month = (String)request.getAttribute("month");
 %>
 
 <script type="text/javascript">
 	$(document).ready(function(){
 				kbo = '<%=kbo%>';
-                var obj = JSON.parse(kbo);
+				Inn = '<%=Inn%>';
+                obj = JSON.parse(kbo);
+                if(Inn==0){
+                	Inn = obj.currentInning;
+                }
                 
                 /*  Object.keys(obj.relayTexts[1][0]).length object 사이즈 구하기 */
                 curInn = obj.currentInning;
                 rel = obj.relayTexts;
  				curBat = rel.currentBatter.liveText;
  				curTxtSize = rel.currentBatterTexts.length;
- 				curTxt = rel.currentBatterTexts[0].liveText;
- 				
- 				//경기가 끝날경우 final정보 출력
- 				if(obj.relayTexts.final.length!=0){
- 					for(i=1;i<rel.final.length;i++){
- 						finalinfo = $("<li>"+rel.final[i-1].liveText+"</li>");
- 						$("#live").children().append(finalinfo);
- 					}
- 				}
- 				alert(obj.currentPlayers.away.playerInfo.pCode);
- 				alert(obj.currentPlayers.home.playerInfo.pCode);
+ 			    alert(curInn);
+ 				alert(Inn);
  				
  				$("#awaylogo").attr("src","http://imgsports.naver.net/images/emblem/new/kbo/default/"+obj.gameInfo.aCode+".png");
  				$("#homelogo").attr("src","http://imgsports.naver.net/images/emblem/new/kbo/default/"+obj.gameInfo.hCode+".png");
  				$("#awayimg").attr("src","http://www.koreabaseball.com/FILE/person/middle/"+obj.currentPlayers.away.playerInfo.pCode+".jpg");
  				$("#homeimg").attr("src","http://www.koreabaseball.com/FILE/person/middle/"+obj.currentPlayers.home.playerInfo.pCode+".jpg");
  				
- 				
- 				$("#live").children().append("<li>============================</li>");
- 				//현재 타자이름 출력
-  				livecurBat = $("<li>"+"현재타자 : "+curBat+"</li>");
- 				$("#live").children().append(livecurBat);		
- 				$("#live").children().append("<li>============================</li>");
- 				
- 				//현재 타자 배팅정보 출력
- 				for(i=0; i< curTxtSize; i++){
- 					curTxt = $("<li>"+obj.relayTexts.currentBatterTexts[i].liveText+"</li>");
- 					$("#live").children().append(curTxt);
+				$("#awayPlayer").append("<h4 class='text-center' id=a_name></h4>");
+				$("#a_name").text(obj.currentPlayers.away.playerInfo.name +
+								"  /  "+ obj.currentPlayers.away.playerInfo.hitType);
+				
+				$("#homePlayer").append("<h4 class='text-center' id=h_name></h4>");
+				$("#h_name").text(obj.currentPlayers.home.playerInfo.name +
+								"  /  "+ obj.currentPlayers.home.playerInfo.hitType);
+				
+                /* <h3 class="text-center">Thumbnail label</h3>
+                <p class="text-center">obj.currentPlayers.away.playerInfo.name</p> */
+                /* +obj.currentPlayers.away.playerInfo.name +
+				"/t"+obj.currentPlayers.away.playerInfo.hitType */
+ 				//Inn link걸기
+	 			if(Inn<10){
+		 			for(i=1;i<=curInn;i++){
+		 				$("#page"+i).attr("href","/kbofantasy/livetext.do?month=<%= month %>&eventId=<%= eventId %>&Inn="+$("#page"+i).text());	 					
+		 			}
+	 			}else{
+	 				$("#pageext").attr("href","/kbofantasy/livetext.do?month=<%= month %>&eventId=<%= eventId %>&Inn="+curInn);
+	 			} 				
+                
+ 				if(Inn==curInn){
+ 	 				//경기가 끝났을 경우 final정보 출력
+ 		 	 		if(obj.relayTexts.final.length!=0){
+ 		 	 			for(i=0;i<rel.final.length;i++){
+ 		 	 				finalinfo = $("<li>"+rel.final[i].liveText+"</li>");
+ 		 	 				$("#live").children().append(finalinfo);
+ 		 	 			}
+ 		 	 			$("#live").children().append("<li>============================</li>"); 		 	 			
+ 		 	 		}
+ 		 	 			//경기가 아직 진행중일때
+						curBatText();
+						gametext(Inn);
+ 				}else{
+ 					gametext(Inn);
  				}
- 				$("#live").children().append("<li>============================</li>");
- 				
- 				//이전 게임정보 출력
-  				for(i=1; i<=curInn; i++){
-  					reltxt = Object.keys(obj.relayTexts[i]).length;
-	                for(j=1; j<=reltxt; j++){	               	
-	                liveback = $("<li>"+obj.relayTexts[i][j-1].liveText+"</li>");
-	                $("#live").children().append(liveback);
-	                } 
- 				 }  
     })
-    
-/*     function runAjax(){
-		//step1. 객체생성
-		var xhr = new XMLHttpRequest();
-		mydiv = document.getElementById("mydiv");
-		//step2. onreadystatechange를 구현
-		xhr.onreadystatechange = function () {
-			console.log("상태값 : "+xhr.readyState);
-			if(xhr.readyState==4 && xhr.status==200){
-
-				mydiv.innerHTML = xhr.responseText;
+	//이전 게임정보 출력
+    function gametext(Inn){
+		if(Inn>9){
+			for(i=10; i<=curInn; i++){
+				reltxt = Object.keys(obj.relayTexts[Inn]).length;				
+				for(j=1; j<=reltxt; j++){	               	
+		            livetext = $("<li>"+obj.relayTexts[i][j-1].liveText+"</li>");
+		            $("#live").children().append(livetext);
+		            }	
 			}
+		}else{
+			alert(reltxt = Object.keys(obj.relayTexts[Inn]).length);
+			reltxt = Object.keys(obj.relayTexts[Inn]).length;
+			for(j=0; j<reltxt; j++){	               	
+	            livetext = $("<li>"+obj.relayTexts[Inn][j].liveText+"</li>");
+	            $("#live").children().append(livetext);
+	            }			
 		}
-		//step3. 요청설정
-		xhr.open("GET", "idtest.jsp?id="+myform.id.value, true);
-		
-		//step4. 요청보내기
-		xhr.send();
-	} */
+
+	}
+	
+	function curBatText(){
+			//현재 타자이름 출력
+			livecurBat = $("<li>"+"현재타자 : "+curBat+"</li>");
+			$("#live").children().append(livecurBat);		
+			$("#live").children().append("<li>----------------------------</li>");
+			
+			//현재 타자 배팅정보 출력
+			for(i=0; i< curTxtSize; i++){
+				curTxt = $("<li>"+obj.relayTexts.currentBatterTexts[i].liveText+"</li>");
+				$("#live").children().append(curTxt);
+
+			}
+			$("#live").children().append("<li>----------------------------</li>");
+	}
 </script>
 </head>
 <body>
@@ -98,7 +124,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="page-header text-primary">
-              <h1>경기결과</h1>
+              <h1>경기결과aaaaaaaaaaaaaaa</h1>
             </div>
           </div>
         </div>
@@ -251,66 +277,55 @@
             <div class="col-md-12">
               <ul class="pagination">
                 <li>
-                  <a href="#">Prev</a>
+                  <a id="page1">1</a>
                 </li>
                 <li>
-                  <a id="page1" href="#link">1</a>
+                  <a id="page2">2</a>
                 </li>
                 <li>
-                  <a id="page2" href="#link">2</a>
+                  <a id="page3">3</a>
                 </li>
                 <li>
-                  <a id="page3" href="#link">3</a>
+                  <a id="page4">4</a>
                 </li>
                 <li>
-                  <a id="page4" href="#link">4</a>
+                  <a id="page5">5</a>
                 </li>
                 <li>
-                  <a id="page5" href="#link">5</a>
+                  <a id="page6">6</a>
                 </li>
                 <li>
-                  <a id="page6" href="#link">6</a>
+                  <a id="page7">7</a>
                 </li>
                 <li>
-                  <a id="page7" href="#link">7</a>
+                  <a id="page8">8</a>
                 </li>
                 <li>
-                  <a id="page8" href="#link">8</a>
+                  <a id="page9">9</a>
                 </li>
                 <li>
-                  <a id="page9" href="#link">9</a>
-                </li>
-                <li>
-                  <a id="pageext" href="#link">연장</a>
-                </li>
-                <li>
-                  <a href="#">Next</a>
+                  <a id="pageext">연장</a>
                 </li>
               </ul>
             </div>
             <div class="col-md-12" id="live"> 
               <ol class="lead list-unstyled" id="live1">
-                <li>문자중계</li>
               </ol>
             </div>
-          </div>
+          </div>          
           <div class="col-md-8">
             <div class="col-md-12">
               <h3 class="text-muted">실시간 투타정보</h3><div class="col-md-6">
                 <div class="thumbnail">
                   <img class="img-responsive" id="awayimg">
-                  <div class="caption">
-                    <h3 class="text-center">Thumbnail label</h3>
-                    <p class="text-center">obj.currentPlayers.away.playerInfo.name</p>
+                  <div class="caption" id="awayPlayer">
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="thumbnail">
                   <img class="img-responsive" id="homeimg">                  
-                <div class="caption">
-                	<h3 class="text-center">Thumbnail label</h3>
-                	<p class="text-center">obj.currentPlayers.home.playerInfo.name</p></div></div>
+                <div class="caption" id="homePlayer">
               </div>
             </div>
             <div class="col-md-12">

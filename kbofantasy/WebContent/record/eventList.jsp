@@ -36,14 +36,7 @@
 			}
 		}
 
-		// 같은 날짜 TD 합치기
-		$(".event-date").each(function () {
-		    var rows = $(".event-date:contains('" + $(this).text() + "')");
-		    if(rows.length > 1) {
-				rows.eq(0).attr("rowspan", rows.length);
-				rows.not(":eq(0)").remove(); 
-		    }
-		});
+
 	
 	});
 
@@ -90,7 +83,7 @@
 								<td><%= dto.getStadium() %></td>
 								<td>
 									<% if (eventDate <= nowDate) { %>
-										<a class="btn btn-primary" href="eventRecord.do?eventId=<%= dto.getEventCode() %>">라이브스코어</a>
+										<a class="btn btn-primary" href="/kbofantasy/livetext.do?eventId=<%= dto.getEventCode() %>&month=<%= month %>">라이브스코어</a>
 										<a class="btn btn-warning" href="eventRecord.do?eventId=<%= dto.getEventCode() %>&pathurl=record/eventRecord.jsp">경기결과</a>
 									<% } %>
 								</td>
