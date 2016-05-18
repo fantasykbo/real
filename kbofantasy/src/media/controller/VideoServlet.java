@@ -1,20 +1,18 @@
-package real.controller;
+package media.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import real.dto.NewsDTO;
-import real.parser.XMLparser;
+import media.logic.YoutubeSearchAPI;
 
-@WebServlet(name = "newssearch", urlPatterns = { "/newssearch.do" })
-public class NewsServlet extends HttpServlet {
+@WebServlet(name = "videosearch", urlPatterns = { "/videosearch.do" })
+public class VideoServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -24,16 +22,26 @@ public class NewsServlet extends HttpServlet {
             throws ServletException, IOException {
 		
 		request.setCharacterEncoding("euc-kr");
+		response.setContentType("text/html;charset=euc-kr");
+		PrintWriter pw = response.getWriter();
+		
 		String teamname = (String)request.getParameter("teamname");
+		String pagetoken =(String)request.getParameter("pagetoken");
 		
-		XMLparser parser = new XMLparser();
-		ArrayList<NewsDTO> news = parser.getdata(teamname);
+		if(teamname.equals("전체보기")){
+			teamname="kbo리그";
+		}
+		teamname = teamname.replaceAll("\\p{Space}", "");
+
 		
-		request.setAttribute("news", news);
-		request.setAttribute("teamname", teamname);
-		RequestDispatcher rd= request.getRequestDispatcher("/real/news.jsp");
-		rd.forward(request, response);
+		if(pagetoken == null){
+			pagetoken="";
+		}
+		
+		YoutubeSearchAPI api = new YoutubeSearchAPI();
+		String myjson = api.getJSON(teamname, pagetoken);
+		
+		pw.print(myjson);
 		
 	}
-
 }

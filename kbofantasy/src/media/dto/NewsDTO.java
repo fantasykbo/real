@@ -1,4 +1,4 @@
-package real.dto;
+package media.dto;
 
 public class NewsDTO {
 	

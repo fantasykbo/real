@@ -1,4 +1,4 @@
-package real.controller;
+package media.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import real.dto.NewsDTO;
-import real.parser.XMLparser;
+import media.dto.NewsDTO;
+import media.logic.XMLparser;
 
 @WebServlet(name = "ajaxnewssearch", urlPatterns = { "/ajaxnewssearch.do" })
 public class AjaxNewsServlet extends HttpServlet {

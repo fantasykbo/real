@@ -1,4 +1,4 @@
-package openapi;
+package media.logic;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-package real.parser;
+package media.logic;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -11,13 +11,13 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import media.dto.NewsDTO;
+import media.logic.NaverSearchAPI;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-
-import openapi.NaverSearchAPI;
-import real.dto.NewsDTO;
 
 public class XMLparser {
 	
