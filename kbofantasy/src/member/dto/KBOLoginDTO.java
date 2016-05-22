@@ -24,9 +24,9 @@ public class KBOLoginDTO {
 
 	public KBOLoginDTO(String name, String email, String password) {
 		super();
-		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.name = name;
 		this.member_cd = 0;
 		this.team_cd = null;
 		this.point = 0;

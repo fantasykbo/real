@@ -2,6 +2,8 @@
     pageEncoding="EUC-KR"%>
 <html>
 <head>
+	<title>Fantasy KBO</title>
+	<link rel="shortcut icon" href="//image.koreabaseball.com/client/images/common/favicon.ico" />
     <meta charset="EUC-KR">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>

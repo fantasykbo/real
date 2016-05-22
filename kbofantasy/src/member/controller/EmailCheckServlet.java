@@ -31,6 +31,7 @@ public class EmailCheckServlet extends HttpServlet {
 		boolean emailchk = service.passcheck(email);
 		
 		String result="";
+		
 		if(emailchk){
 			result="중복된 이메일. 다시 입력하세요";
 		}else{

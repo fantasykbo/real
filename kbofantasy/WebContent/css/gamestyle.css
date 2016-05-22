@@ -1,0 +1,219 @@
+body{
+	color: white;
+}
+#gamecontent{
+	color:white;
+	width: 950px;
+	height: 605px;
+  	background-image: url("http://casspoint.mbcplus.com/images/lineup/k_lineupground.jpg");
+	margin-top: 100px;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+#userinfo{
+	width: 230px;
+	height: 440px;
+	background-image: url("http://casspoint.mbcplus.com/images/lineup/k_lineground2.png"); 
+	text-align: center;
+	float: right;
+}
+.pager{
+	width: 950px;
+	height: 145px;
+	padding-top: 20px;
+}
+#setcap{
+	width: 98px;
+	height: 33px;
+	background-color: yellow;
+	margin-left: auto;
+	margin-right: auto;
+	color: black;
+	background-image: url("../images/capset_btn.gif");
+	border: 1px yellow;
+}
+.player{
+	position: absolute;
+	margin-top: 160px;
+    border: 1px solid #000;
+    background-color: #333;
+    width: 159px;
+    height: 68px;
+    font-size: 7pt;
+    cursor: pointer;
+   
+}
+.img{
+	width: 70px;
+    height: 100%;
+    float: left;
+}
+.txt{
+	width: 87px;
+    height: 100%;
+    float: left;
+}
+.pointsp{
+	width: 100%;
+    background-color: #24348d;
+    height: 16px;
+    border: 1px, solid #000;
+    float: left;
+}
+
+/*아두치*/
+#cf{
+	position: absolute;
+	top: 165px;
+	left: 387px;
+}
+/*니퍼트*/
+#sp{
+	position: absolute;
+	top: 367px;
+	left: 309px;
+}
+/*김하성*/
+#ss{
+	position: absolute;
+	top: 260px;
+    left: 309px;
+}
+/*오재일*/
+#dh{
+	position: absolute;
+	top: 501px;
+    left: 309px;	
+}
+/*서건창*/
+#b2{
+	position: absolute;
+	top: 260px;
+	left: 481px;
+}
+/*보우덴*/
+#rp{
+	position: absolute;
+	top: 367px;
+    left: 481px;
+}
+/*양의지*/
+#c{
+	position: absolute;
+	top: 501px;
+    left: 481px;
+}
+/*테임즈*/
+#b1{
+	position: absolute;
+	top: 331px;
+    left: 666px;
+}
+
+/*최형우*/
+#lf{
+	position: absolute;
+	top: 220px;
+    left: 125px;	
+}
+/*히메네스*/
+#b3{
+	position: absolute;
+	top: 331px;
+    left: 125px;	
+}
+/*정의윤*/
+#rf{
+	position: absolute;
+	top: 220px;
+    left: 666px;
+}
+#btn{
+	float: right;
+	margin-right: 45px;
+}
+.c_btn{
+	margin: 3px;
+}
+#save{
+	width: 150px;
+	height: 50px;
+	background-color: #d71827;
+	cursor: pointer;
+}
+#out{	
+	width: 70px;
+	height: 50px;
+	background-color: #00a99d;
+	cursor: pointer;
+}
+#rollback{
+	width: 70px;
+	height: 50px;
+	background-color: #2c86d9;
+	cursor: pointer;
+}
+#selection{
+	position: absolute;
+}
+#pl_select{
+	background-color: white;
+	border: 1px solid black;
+	width: 400px;
+	height: 450px;
+	float: left;
+	z-index: 1;
+}
+
+#pl_info{
+	background-color: white;
+	border: 1px solid black;
+	width: 400px;
+	height: 450px;
+	float: left;
+	z-index: 1;
+}
+.title{
+	width: 400px;
+	height: 30px;
+	border: 1px solid black;
+	background-color: black;
+}
+#profile{
+	font: 8pt;
+	color: black;
+}
+th{
+	font-size: 8pt;
+	color: black;
+}
+td{
+	font-size: 8pt;
+	color: black;
+}
+#outbtn{
+	float: right;
+}
+.list-group-item{
+	font-size: 10pt;
+	color: black;
+}
+#sum{
+	color: black;
+	clear: both;
+}
+.btn-group{
+	margin-top: 20px;
+}
+input{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#close{
+	float: right;
+	margin-right: 10px;
+	cursor: pointer;
+}
+#search_btn{
+	cursor: pointer;
+}

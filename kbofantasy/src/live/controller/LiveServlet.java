@@ -16,10 +16,10 @@ import live.service.LiveServiceImpl;
 @WebServlet(name = "livetext", urlPatterns = { "/livetext.do" })
 public class LiveServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("EUC-KR");
+		response.setContentType("text/html;charset=EUC-KR");
 		int Inn;
-		// 일정결과 페이지에서 문자중계 화면 띄울떄 default Inn값 설정
+		// 일정결과 페이지에서 문자중계 화면 띄울 default Inn값 설정
 		if(request.getParameter("Inn")==null){
 			Inn=0;
 		}else{
@@ -28,6 +28,8 @@ public class LiveServlet extends HttpServlet {
 		
 		String eventId = request.getParameter("eventId");
 		String month = request.getParameter("month");
+		String pathurl = request.getParameter("pathurl");
+
 		String forwardview="";
 		
 		LiveService logic = new LiveServiceImpl();
@@ -43,9 +45,11 @@ public class LiveServlet extends HttpServlet {
 		request.setAttribute("Inn", Inn);
 		request.setAttribute("eventId", eventId);
 		request.setAttribute("month", month);
+		request.setAttribute("pathurl", pathurl);
+
 		
 		if(request.getParameter("path")==null){
-			forwardview ="/liveText/Parse_nsd.jsp";
+			forwardview ="/layout/layout.jsp";
 			
 			RequestDispatcher rd = request.getRequestDispatcher(forwardview);
 			rd.forward(request, response);
@@ -56,4 +60,3 @@ public class LiveServlet extends HttpServlet {
 		
 	}
 }
-

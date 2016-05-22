@@ -34,25 +34,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<div class="navbar navbar-default navbar-static-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#navbar-ex-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#"><span>Brand</span></a>
-			</div>
-			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Contacts</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+
 	<div class="section">
 		<div class="container">
 			<div class="row">
@@ -70,7 +52,7 @@ $(document).ready(function(){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<a href="changepass.jsp" rel="0" class="newWindow"><img src="../images/pass.PNG" ></a>
+					<a href="/kbofantasy/mypage/changepass.jsp" rel="0" class="newWindow"><img src="/kbofantasy/images/pass.PNG" ></a>
 					<h2>ºñ¹Ð¹øÈ£ º¯°æ</h2>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipisici elit, <br>sed
@@ -79,7 +61,7 @@ $(document).ready(function(){
 					</p>
 				</div>
 				<div class="col-md-6">
-					<a href="memberleave.jsp" rel="1" class="newWindow"><img src="../images/dropout.png"></a>
+					<a href="/kbofantasy/mypage/memberleave.jsp" rel="1" class="newWindow"><img src="/kbofantasy/images/dropout.png"></a>
 					<h2>È¸¿ø Å»Åð</h2>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipisici elit, <br>sed
@@ -90,45 +72,6 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-	<footer class="section section-primary">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<h1>Fantasy Game</h1>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisici elit, <br>sed
-						eiusmod tempor incidunt ut labore et dolore magna aliqua. <br>Ut
-						enim ad minim veniam, quis nostrud
-					</p>
-				</div>
-				<div class="col-sm-6">
-					<p class="text-info text-right">
-						<br> <br>
-					</p>
-					<div class="row">
-						<div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-							<a href="#"><i
-								class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a> <a
-								href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-							<a href="#"><i
-								class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a> <a href="#"><i
-								class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 hidden-xs text-right">
-							<a href="#"><i
-								class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a> <a
-								href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-							<a href="#"><i
-								class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a> <a href="#"><i
-								class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
 
 
 </body>

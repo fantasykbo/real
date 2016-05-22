@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import record.dto.RecordDTO;
+import record.dto.EventDTO;
 import record.service.RecordService;
 import record.service.RecordServiceImpl;
 // 세부경기결과페이지 서블릿
@@ -22,16 +22,15 @@ public class EventRecordServlet extends HttpServlet{
 		
 		String eventId = request.getParameter("eventId");
 		String pathurl = request.getParameter("pathurl");
-		String forwardview = "";
 		RecordService service = new RecordServiceImpl();
 		
 		String eventData = service.eventRecordData(eventId);
-		System.out.println("serrrrvlet : " + eventId + eventData);
+		System.out.println("servlet : " + eventId + eventData);
 
 		request.setAttribute("pathurl", pathurl);
 		request.setAttribute("eventData", eventData);
-		forwardview = "/layout/eventRecordLayout.jsp";
-
+		
+		String forwardview = "/layout/layout.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(forwardview);
 		rd.forward(request, response);
 	}

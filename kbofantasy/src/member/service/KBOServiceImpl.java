@@ -76,5 +76,50 @@ public class KBOServiceImpl implements KBOService {
 		close(null, null, con);
 		return result;
 	}
+	
+	@Override
+	public int memberleave(String email,String password) {
+		Connection con = getConnect();
+		int result=0;
+		KBODAO dao = new KBODAOImpl();
+		try {
+			System.out.println("¼­ºñ½º");
+			result = dao.memberleave(email, password, con);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public boolean logincheck(String email, String password) {
+		Connection con = getConnect();
+		KBODAO dao = new KBODAOImpl();
+		boolean result = false;
+		
+		try {
+			result = dao.loginCheck(con,email, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close(null, null, con);
+		return result;
+	}
+
+	@Override
+	public int changepass(String email,String password) {
+		Connection con = getConnect();
+		KBOLoginDTO chpass = null;
+		KBODAO dao = new KBODAOImpl();
+		int result=0;
+		try {
+			result = dao.changepassword(email,password, con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 
 }
