@@ -14,7 +14,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-import record.dto.PlayerDTO;
+import record.dto.BatterDTO;
 import record.service.RecordService;
 import record.service.RecordServiceImpl;
 
@@ -36,10 +36,10 @@ public class EventDataParse {
 		
 	}
 
-	public ArrayList<PlayerDTO> playerRecordData(String eventId) throws IOException, ParseException {
+	public ArrayList<BatterDTO> playerRecordData(String eventId) throws IOException, ParseException {
 
-		ArrayList<PlayerDTO> list = new ArrayList<PlayerDTO>();
-		PlayerDTO dto = null;
+		ArrayList<BatterDTO> list = new ArrayList<BatterDTO>();
+		BatterDTO dto = null;
 	
 		RecordService service = new RecordServiceImpl();
 		
@@ -61,7 +61,7 @@ public class EventDataParse {
 			
 			// 선수별로 구분하는 for 시작
 			for (int k = 0; k < batteraway.size(); k++) {
-				dto =  new PlayerDTO();
+				dto =  new BatterDTO();
 				JSONObject batterawayPlayer = (JSONObject) batteraway.get(k);
 				System.out.println(batterawayPlayer.toString());
 
@@ -96,7 +96,7 @@ public class EventDataParse {
 	}
 
 
-	public static void Categorize(String inn, PlayerDTO dto) {
+	public static void Categorize(String inn, BatterDTO dto) {
 		
 		int len = inn.length();
 		

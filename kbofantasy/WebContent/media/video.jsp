@@ -1,9 +1,9 @@
+<%@page import="media.logic.YoutubeSearchAPI"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="text/javascript"
 			src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -16,7 +16,28 @@
 			href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
 			rel="stylesheet" type="text/css">
 
-		<script type="text/javascript">
+		<style type="text/css">
+			a:HOVER{
+				cursor: pointer;
+			}
+			.list-group-item:HOVER {
+				background-color: #337cbb;
+				cursor: pointer;	
+			}
+			#addcontent{
+				border: solid 1px #337cbb;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 50px;
+				padding-right: 50px;
+				cursor: pointer;
+			}
+		</style>
+		
+		
+	</head>
+	<body>
+	<script type="text/javascript">
 		
 		$(document).ready(function() {
 			content='';
@@ -24,11 +45,11 @@
 			pagetoken='';
 			getVideo(teamname,pagetoken);
 			
-			$("#addcontent").click(function() {
+			$("#addcontent").on("click",function() {
 				getVideo(teamname, pagetoken);
 			});
 			
-			$(".list-group-item").click(function() {
+			$(".list-group-item").on("click",function() {
 				content="";
 				teamname = $(this).text();
 				document.getElementById("title").innerHTML= teamname;
@@ -69,8 +90,8 @@
 					description = data.items[i].snippet.description;
 					images = data.items[i].snippet.thumbnails.medium.url;
 					
-					str = "<div class='col-md-4'><div class='thumbnail'><img src='"+images+"' class='img-responsive'>"
-					+"<div class='caption'><a href='https://www.youtube.com/watch?v="+videoid+"'><h5>"+title+"</h5></a><p class='text-muted'>"+publishedAt+"</p></div></div></div>";
+					str = "<div class='col-md-4' style = 'height:300px' ><div class='thumbnail'><img src='"+images+"' class='img-responsive'>"
+					+"<div class='caption'><a href='https://www.youtube.com/watch?v="+videoid+"' target='_blank'><h5>"+title+"</h5></a><p class='text-muted'>"+publishedAt+"</p></div></div></div>";
 					
 					content = content + str;
 					
@@ -86,8 +107,8 @@
 	
 		});
 		</script>
-	</head>
-	<body>
+		
+		<!-- view부분 시작 -->
 		<div class="section">
 			<div class="container">
 				<div class="row">

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import record.dto.RecordDTO;
+import record.dto.EventDTO;
 import record.service.RecordService;
 import record.service.RecordServiceImpl;
 // 경기일정/결과 서블릿
@@ -36,10 +36,9 @@ public class EventListServlet extends HttpServlet {
 			tDay = "0" + tDay;
 		}
 		
-		String forwardview = "";
 		RecordService service = new RecordServiceImpl();
 		
-		ArrayList<RecordDTO> eventList = service.eventList(year, month);
+		ArrayList<EventDTO> eventList = service.eventList(year, month);
 		String eventTodayData = service.eventTodayData(tYear, tMonth, tDay);
 	
 		request.setAttribute("pathurl", pathurl);
@@ -49,7 +48,7 @@ public class EventListServlet extends HttpServlet {
 
 		request.setAttribute("eventTodayData", eventTodayData);
 
-		forwardview = "/layout/recordLayout.jsp";
+		String forwardview = "/layout/layout.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(forwardview);
 		rd.forward(request, response);
 	}

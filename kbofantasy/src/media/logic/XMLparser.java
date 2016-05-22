@@ -11,17 +11,16 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import media.dto.NewsDTO;
-import media.logic.NaverSearchAPI;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import media.logic.NaverSearchAPI;
+
 public class XMLparser {
 	
-	public static String[] getdate(String pubdate){
+	public static String getdate(String pubdate){
 		/* 년: 0
 		 * 월: 1
 		 * 일: 2
@@ -41,15 +40,15 @@ public class XMLparser {
 			break;
 		}
 		
-		String[] str = {year, month, date};
+		String str = year+"년 "+month+"월 "+date+"일";
 		return str;
 	}
 	
-	public ArrayList<NewsDTO> getdata(String query){
+	public String getdata(String query){
 		
 		String xml = "";
 
-		ArrayList<NewsDTO> news= new ArrayList<NewsDTO>();
+		String news="";
 		
 		String title = "";
 		String pubdate = "";
@@ -79,10 +78,10 @@ public class XMLparser {
 				description = cols.item(3).getTextContent();
 				pubdate = cols.item(4).getTextContent();
 				
-				String[] date = getdate(pubdate);
+				String date = getdate(pubdate);
 				
-				NewsDTO obj = new NewsDTO(title, link, date, description);
-				news.add(obj);
+				String obj = title+";;; "+link+";;; "+date+";;; "+description+ ";;;;;;;;;;\n";
+				news = news + obj;
 
 			}
 			

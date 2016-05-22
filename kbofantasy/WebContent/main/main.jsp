@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="EUC-KR"%>
 <html>
   
   <head>
-    <meta charset="utf-8">
+    <meta charset="EUC-KR">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -15,51 +14,26 @@
   </head>
   
   <body>
-    <div class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="text-center">Team</h1>
-            <p class="text-center">We are a group of skilled individuals.</p>
+    <div id="carousel-example" data-interval="false" class="carousel slide"
+    data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c">
+          <div class="carousel-caption">
+            <h2>게임가능</h2>
+            <p>설명가능</p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-2">
-            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
-            class="img-circle img-responsive">
-          </div>
-          <div class="col-md-4">
-            <h3 class="text-left">John Doe</h3>
-            <p class="text-left">Lorem ipsum dolor sit amet, adipiscing elit Aenean commodo ligula eget.</p>
-          </div>
-          <div class="col-md-2">
-            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
-            class="img-circle img-responsive">
-          </div>
-          <div class="col-md-4">
-            <h3 class="text-left">John Doe</h3>
-            <p class="text-left">Lorem ipsum dolor sit amet, adipiscing elit Aenean commodo ligula eget.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
-            class="img-circle img-responsive">
-          </div>
-          <div class="col-md-4">
-            <h3 class="text-left">John Doe</h3>
-            <p class="text-left">Lorem ipsum dolor sit amet, adipiscing elit Aenean commodo ligula eget.</p>
-          </div>
-          <div class="col-md-2">
-            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
-            class="img-circle img-responsive">
-          </div>
-          <div class="col-md-4 text-center">
-            <h3 class="text-left">John Doe</h3>
-            <p class="text-left">Lorem ipsum dolor sit amet, adipiscing elit Aenean commodo ligula eget.</p>
+        <div class="item">
+          <img src="https://unsplash.imgix.net/photo-1423439793616-f2aa4356b37e?w=1024&amp;q=50&amp;fm=jpg&amp;s=3b42f9c018b2712544debf4d6a4998ff">
+          <div class="carousel-caption">
+            <h2>Title</h2>
+            <p>Description</p>
           </div>
         </div>
       </div>
+      <a class="left carousel-control" href="#carousel-example" data-slide="prev"><i class="icon-prev  fa fa-angle-left"></i></a>
+      <a class="right carousel-control" href="#carousel-example" data-slide="next"><i class="icon-next fa fa-angle-right"></i></a>
     </div>
   </body>
 

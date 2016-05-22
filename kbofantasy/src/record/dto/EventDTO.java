@@ -1,6 +1,6 @@
 package record.dto;
 
-public class RecordDTO {
+public class EventDTO {
 	public String eventCode;
 	public String eventDate;
 	public String aTeamCode;
@@ -14,8 +14,32 @@ public class RecordDTO {
 	public String hTeamSName;
 	public String sEventDate;
 	
-	public RecordDTO() {}
-	public RecordDTO(String eventCode, String eventDate, String aTeamCode,
+	public EventDTO() {}
+	
+	public EventDTO(String eventCode, String aTeamCode, String hTeamCode,
+			String aScore, String hScore, String aTeamSName, String hTeamSName) {
+		super();
+		this.eventCode = eventCode;
+		this.aTeamCode = aTeamCode;
+		this.hTeamCode = hTeamCode;
+		this.aScore = aScore;
+		this.hScore = hScore;
+		this.aTeamSName = aTeamSName;
+		this.hTeamSName = hTeamSName;
+	}
+
+
+
+	public EventDTO(String eventCode, String aScore, String hScore, String eventStatus, String cancelFlag) {
+		super();
+		this.eventCode = eventCode;
+		this.aScore = aScore;
+		this.hScore = hScore;
+		this.eventStatus = eventStatus;
+		this.cancelFlag = cancelFlag;
+	}
+
+	public EventDTO(String eventCode, String eventDate, String aTeamCode,
 			String hTeamCode, String stadium, String aScore, String hScore,
 			String eventStatus, String cancelFlag, String aTeamSName, String hTeamSName, String sEventDate) {
 		super();
@@ -113,5 +137,7 @@ public class RecordDTO {
 				+ cancelFlag + ", aTeamSName=" + aTeamSName + ", hTeamSName="
 				+ hTeamSName + ", sEventDate=" + sEventDate + "]";
 	}
+	
+	
 	
 }

@@ -1,132 +1,155 @@
-<%@page import="media.dto.NewsDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript"
-		src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<link
-		href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-		rel="stylesheet" type="text/css">
-	<link
-		href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-		rel="stylesheet" type="text/css">
-		
-	<% 
-		ArrayList<NewsDTO> news = (ArrayList<NewsDTO>)request.getAttribute("news");
-		String teamname= (String)request.getParameter("teamname");
-
-		int size = news.size();
-		int view = 0;
-	%>
-	
-	<script type="text/javascript">
-	$(document).ready(function() {
-		end = 0;
-		count = 0;
-		$("#addcontent").on("click",function() {
-				count = count+1;
-				end = count*10;
-				getNews(end);
-
-			
-		});
-		function getNews(end) {
-			s = end.toString();
-			teamname='<%=teamname%>';
-
-			var xhr = new XMLHttpRequest();
-			mydiv = document.getElementById("content");
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					mydiv.innerHTML = xhr.responseText;
-				}
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript"
+			src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script type="text/javascript"
+			src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link
+			href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+			rel="stylesheet" type="text/css">
+		<link
+			href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
+			rel="stylesheet" type="text/css">
+		<style type="text/css">
+			a:HOVER{
+				cursor: pointer;
 			}
-			xhr.open("GET", "/kbofantasy/ajaxnewssearch.do?end="+s+"&teamname="+teamname, true);
-			xhr.send();
-
-		}
-
-	});
-</script>
+			.list-group-item:HOVER {
+				background-color: #337cbb;
+				cursor: pointer;	
+			}
+			#addcontent{
+				border: solid 1px #337cbb;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 50px;
+				padding-right: 50px;
+				cursor: pointer;
+			}
+		</style>
+		
 	</head>
 	<body>
+	<script type="text/javascript">
+		
+		$(document).ready(function() {
+			content="";
+			teamname='kbo리그';
+			getNews(teamname);
+			count = 1;
+			num = 10;
+			
+			$("#addcontent").on("click",function() {
+				count++;
+				if(count>10){
+					if(count==11){
+						content=content+"<br/><p>모든 뉴스를 로드하였습니다.</p>";
+						$(".media-list").html(content);
+					}else{
+					}
+					
+				}else{
+					num = count*10;
+					getNews(teamname);	
+				}
+					
+			});
+			
+			$(".list-group-item").on("click",function() {
+				teamname = $(this).text();
+				count=1;
+				num=10;
+				$("#title").html(teamname);
+				getNews(teamname);
+			});
+	
+			function getNews(teamname) {
+	
+				var xhr = new XMLHttpRequest();
+				
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						news = xhr.responseText;
+						printcontent(num, news);
+					}
+				}
+				xhr.open("GET", "/kbofantasy/newssearch.do?teamname=" +teamname, true);
+				xhr.send();
+	
+			}
+			
+			function printcontent(num, news){
+				var line = news.split(";;;;;;;;;;\n");
+				content="";
+				for(i=1;i<num;i++){
+					var arr = line[i].split(";;; ");
+					var title = arr[0];
+					var link = arr[1];
+					var date = arr[2];
+					var description = arr[3];
+					
+					str = "<li class='media'>"
+					+"<div class='media-body'><h4 class='media-heading'><a href='"+link+"' target=\"_blank\">"+title+"</a><small>"+date+"</small></h4>"
+					+"<p>"+ description +"</p></div>"+
+					"</li>";
+					
+					content = content+str;
+				}
+				$(".media-list").html(content);
+
+			}
+	
+		});
+		</script>	
+		
+		<!-- view부분 시작 -->
 		<div class="section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="page-header text-primary">
 							<h1>
-								뉴스센터 <small><%=teamname %></small>
+								뉴스센터 <small id="title">전체보기</small>
 							</h1>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-10">
-						<ul id="content" class="media-list">
-						<%for(int i=0; i<10;i++){
-							NewsDTO obj = news.get(i);
-							String[] pubdate = obj.getPubdate();%>
-							<li class="media"><a href="#" class="pull-left"><img
-									class="media-object"
-									src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-									height="64" width="64"></a>
-								<div class="media-body">
-									<h4 class="media-heading">
-										<a href="<%=obj.getLink()%>"><%=obj.getTitle()%></a>&nbsp; <small><%=pubdate[0]%>년 <%=pubdate[1]%>월 <%=pubdate[2] %>일</small>
-									</h4>
-									<p><%=obj.getDescription() %></p>
-								</div></li>
-							<%} %>
-							<div id="content"></div>
+						<ul class="media-list">
+						<!-- news 내용 들어갈 곳 -->
 						</ul>
 						<div class="row">
 							<div class="col-md-12 text-center">
 								<ul class="pagination">
 									<li id="addcontent">더보기</li>
+
 								</ul>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<ul class="list-group text-center">
-							<li class="list-group-item">
-								<a href="/kbofantasy/newssearch.do?teamname=kbo리그">전체보기</a></li>
-							<li class="list-group-item">
-								<a href="/kbofantasy/newssearch.do?teamname=두산베어스">두산 베어스</a></li>
-				
-							<li class="list-group-item">
-								<a href="/kbofantasy/newssearch.do?teamname=삼성라이온즈">삼성 라이온즈</a></li>
-						
-							<li class="list-group-item">
-								<a href="/kbofantasy/newssearch.do?teamname=NC다이노스">NC 다이노스</a></li>
-							<li class="list-group-item">
-							<a href="/kbofantasy/newssearch.do?teamname=넥센히어로즈">넥센 히어로즈</a></li>
-							<li class="list-group-item">
-							<a href="/kbofantasy/newssearch.do?teamname=SK와이번스">SK 와이번스</a></li>
-							<li class="list-group-item">
-							<a href="/kbofantasy/newssearch.do?teamname=한화이글스">한화 이글스</a></li>
-							<li class="list-group-item">
-							<a href="/kbofantasy/newssearch.do?teamname=KIA타이거즈">KIA 타이거즈</a></li>
-							<li class="list-group-item">
-							<a href="/kbofantasy/newssearch.do?teamname=롯데자이언츠">롯데 자이언츠</a></li>
-							<li class="list-group-item">
-							<a href="/kbofantasy/newssearch.do?teamname=LG트윈스">LG 트윈스</a></li>
-							<li class="list-group-item">
-							<a href="/kbofantasy/newssearch.do?teamname=kt위즈">kt 위즈</a></li>
+							<li class="list-group-item">전체보기</li>
+							<li class="list-group-item">두산 베어스</li>
+							<li class="list-group-item">삼성 라이온즈</li>
+							<li class="list-group-item">NC 다이노스</li>
+							<li class="list-group-item">넥센 히어로즈</li>
+							<li class="list-group-item">SK 와이번스</li>
+							<li class="list-group-item">한화 이글스</li>
+							<li class="list-group-item">KIA 타이거즈</li>
+							<li class="list-group-item">롯데 자이언츠</li>
+							<li class="list-group-item">LG 트윈스</li>
+							<li class="list-group-item">kt 위즈</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-	
-	
 	</body>
 </html>

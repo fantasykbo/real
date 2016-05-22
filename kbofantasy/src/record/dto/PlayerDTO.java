@@ -1,61 +1,42 @@
 package record.dto;
 
 public class PlayerDTO {
-	public String eventCode;
 	public String playerCode;
-	public int pa;		// 타석
-	public float hra;	// 타율
-	public int h1;		// 1루타
-	public int h2;		// 2루타
-	public int h3;		// 3루타
-	public int hr;		// 홈런
-	public int rs;		// 득점
-	public int rb;		// 타점
-	public int bb;		// 4사
-	public int ib;		// 고의4구
-	public int sh;		// 희생타
-	public int ot;		// 아웃
-	public int so;		// 삼진
-	public int dp;		// 병살
-	public int point;
+	public String backNo;
+	public String playerName;
+	public String teamCode;
+	public String positionName;
+	public String positionDetail;
+	public String birth;
+	public String spec;
+	public String school;
+	public String hand;
+	public String salary;
+	public int pointSum;
+	public String teamName;
 	
-	@Override
-	public String toString() {
-		return "PlayerDTO [eventCode=" + eventCode + ", playerCode="
-				+ playerCode + ", pa=" + pa + ", hra=" + hra + ", h1=" + h1
-				+ ", h2=" + h2 + ", h3=" + h3 + ", hr=" + hr + ", rs=" + rs
-				+ ", rb=" + rb + ", bb=" + bb + ", ib=" + ib + ", sh=" + sh
-				+ ", ot=" + ot + ", so=" + so + ", dp=" + dp + ", point="
-				+ point + "]";
-	}
+	
+	
 	public PlayerDTO(){}
-	public PlayerDTO(String eventCode, String playerCode, int pa, float hra,
-			int h1, int h2, int h3, int hr, int rs, int rb, int bb, int ib,
-			int sh, int ot, int so, int dp, int point) {
+	
+	public PlayerDTO(String playerCode, String backNo, String playerName,
+			String teamCode, String positionName, String positionDetail,
+			String birth, String spec, String school, String hand,
+			String salary, int pointSum, String teamName) {
 		super();
-		this.eventCode = eventCode;
 		this.playerCode = playerCode;
-		this.pa = pa;
-		this.hra = hra;
-		this.h1 = h1;
-		this.h2 = h2;
-		this.h3 = h3;
-		this.hr = hr;
-		this.rs = rs;
-		this.rb = rb;
-		this.bb = bb;
-		this.ib = ib;
-		this.sh = sh;
-		this.ot = ot;
-		this.so = so;
-		this.dp = dp;
-		this.point = point;
-	}
-	public String getEventCode() {
-		return eventCode;
-	}
-	public void setEventCode(String eventCode) {
-		this.eventCode = eventCode;
+		this.backNo = backNo;
+		this.playerName = playerName;
+		this.teamCode = teamCode;
+		this.positionName = positionName;
+		this.positionDetail = positionDetail;
+		this.birth = birth;
+		this.spec = spec;
+		this.school = school;
+		this.hand = hand;
+		this.salary = salary;
+		this.pointSum = pointSum;
+		this.teamName = teamName;
 	}
 	public String getPlayerCode() {
 		return playerCode;
@@ -63,95 +44,77 @@ public class PlayerDTO {
 	public void setPlayerCode(String playerCode) {
 		this.playerCode = playerCode;
 	}
-	public int getPa() {
-		return pa;
+	public String getBackNo() {
+		return backNo;
 	}
-	public void setPa(int pa) {
-		this.pa = pa;
+	public void setBackNo(String backNo) {
+		this.backNo = backNo;
 	}
-	public float getHra() {
-		return hra;
+	public String getPlayerName() {
+		return playerName;
 	}
-	public void setHra(float hra) {
-		this.hra = hra;
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
-	public int getH1() {
-		return h1;
+	public String getTeamCode() {
+		return teamCode;
 	}
-	public void setH1(int h1) {
-		this.h1 = h1;
+	public void setTeamCode(String teamCode) {
+		this.teamCode = teamCode;
 	}
-	public int getH2() {
-		return h2;
+	public String getPositionName() {
+		return positionName;
 	}
-	public void setH2(int h2) {
-		this.h2 = h2;
+	public void setPositionName(String positionName) {
+		this.positionName = positionName;
 	}
-	public int getH3() {
-		return h3;
+	public String getPositionDetail() {
+		return positionDetail;
 	}
-	public void setH3(int h3) {
-		this.h3 = h3;
+	public void setPositionDetail(String positionDetail) {
+		this.positionDetail = positionDetail;
 	}
-	public int getHr() {
-		return hr;
+	public String getBirth() {
+		return birth;
 	}
-	public void setHr(int hr) {
-		this.hr = hr;
+	public void setBirth(String birth) {
+		this.birth = birth;
 	}
-	public int getRs() {
-		return rs;
+	public String getSpec() {
+		return spec;
 	}
-	public void setRs(int rs) {
-		this.rs = rs;
+	public void setSpec(String spec) {
+		this.spec = spec;
 	}
-	public int getRb() {
-		return rb;
+	public String getSchool() {
+		return school;
 	}
-	public void setRb(int rb) {
-		this.rb = rb;
+	public void setSchool(String school) {
+		this.school = school;
 	}
-	public int getBb() {
-		return bb;
+	public String getHand() {
+		return hand;
 	}
-	public void setBb(int bb) {
-		this.bb = bb;
+	public void setHand(String hand) {
+		this.hand = hand;
 	}
-	public int getIb() {
-		return ib;
+	public String getSalary() {
+		return salary;
 	}
-	public void setIb(int ib) {
-		this.ib = ib;
+	public void setSalary(String salary) {
+		this.salary = salary;
 	}
-	public int getSh() {
-		return sh;
+	public int getPointSum() {
+		return pointSum;
 	}
-	public void setSh(int sh) {
-		this.sh = sh;
+	public void setPointSum(int pointSum) {
+		this.pointSum = pointSum;
 	}
-	public int getOt() {
-		return ot;
+	public String getTeamName() {
+		return teamName;
 	}
-	public void setOt(int ot) {
-		this.ot = ot;
-	}
-	public int getSo() {
-		return so;
-	}
-	public void setSo(int so) {
-		this.so = so;
-	}
-	public int getDp() {
-		return dp;
-	}
-	public void setDp(int dp) {
-		this.dp = dp;
-	}
-	public int getPoint() {
-		return point;
-	}
-	public void setPoint(int point) {
-		this.point = point;
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
 	
 	

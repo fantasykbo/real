@@ -8,6 +8,8 @@
 <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+</head>
+<body>
 <script type="text/javascript">
 <%String eventData = (String) request.getAttribute("eventData");%>
 
@@ -82,8 +84,8 @@
 			var brTbody = "";
 			for(i = 0; i < eval("obj.battersBoxscore." + f + ".length"); i++) {
 				brTbody += "<tr><td>" + eval("obj.battersBoxscore." + f + "[" + i + "].pos") + "</td>";
-				brTbody += "<td><a href=\"http://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId="
-						+ eval("obj.battersBoxscore." + f + "[" + i + "].playerCode") + "\" target=\"_blank\">"
+				brTbody += "<td><a href=\"playerInfo.do?pathurl=/record/playerInfo.jsp&playerCode="
+						+ eval("obj.battersBoxscore." + f + "[" + i + "].playerCode") + "\">"
 						+ eval("obj.battersBoxscore." + f + "[" + i + "].name") + "</a></td>";
 				for(j = 1; j <= brSize; j++) {
 					brTbody += "<td>" + eval("obj.battersBoxscore." + f + "[" + i + "].inn" + j) + "</td>";
@@ -101,7 +103,9 @@
 			// 투수기록 body
 			var prTbody = "";
 			for(i = 0; i < eval("obj.pitchersBoxscore." + f + ".length"); i++) {
-				prTbody += "<tr><td>" + eval("obj.pitchersBoxscore." + f + "[" + i + "].name") + "</td>";
+				prTbody += "<tr><td><a href=\"playerInfo.do?pathurl=/record/playerInfo.jsp&playerCode="
+					+ eval("obj.pitchersBoxscore." + f + "[" + i + "].pCode") + "\">"
+					+ eval("obj.pitchersBoxscore." + f + "[" + i + "].name") + "</a></td>";
 				prTbody += "<td>" + eval("obj.pitchersBoxscore." + f + "[" + i + "].wls") + "</td>";
 				prTbody += "<td>" + eval("obj.pitchersBoxscore." + f + "[" + i + "].gameCount") + "</td>";
 				prTbody += "<td>" + eval("obj.pitchersBoxscore." + f + "[" + i + "].w") + "</td>";
@@ -131,9 +135,6 @@
  	
  	});
 </script>
-
-</head>
-<body>
 	<div class="section">
 		<div class="container">
 			<div class="row">

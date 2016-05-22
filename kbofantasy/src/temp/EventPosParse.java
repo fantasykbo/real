@@ -16,7 +16,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-import record.dto.PlayerDTO;
+import record.dto.BatterDTO;
 
 public class EventPosParse {
 
@@ -33,9 +33,9 @@ public class EventPosParse {
 		
 	}
 
-	public ArrayList<PlayerDTO> playerRecordData(String eventId) throws IOException, ParseException {
+	public ArrayList<BatterDTO> playerRecordData(String eventId) throws IOException, ParseException {
 
-		ArrayList<PlayerDTO> list = new ArrayList<PlayerDTO>();
+		ArrayList<BatterDTO> list = new ArrayList<BatterDTO>();
 	
 		System.out.println(dump().size());
 		for(int i = 0; i < dump().size(); i++) {

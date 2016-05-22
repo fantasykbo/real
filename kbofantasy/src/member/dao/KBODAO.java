@@ -15,4 +15,9 @@ public interface KBODAO {
 
 	boolean passCheck(Connection con, String password) throws SQLException;
 	
+	int memberleave(String email,String password, Connection con) throws SQLException;
+
+	boolean loginCheck(Connection con, String email,String password) throws SQLException;
+
+	int changepassword(String email,String password, Connection con) throws SQLException;
 }
