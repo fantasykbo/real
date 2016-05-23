@@ -50,12 +50,14 @@ public class KBODAOImpl implements KBODAO {
 		ptmt.setString(3, register.getName());
 		ptmt.setString(4, register.getTeam_cd());
 		ptmt.setInt(5, register.getPoint());
-
+		
 		int result = ptmt.executeUpdate();
 		if (result > 0) {
 			System.out.println("입력성공");
 		} else {
 			System.out.println("입력실패");
+		
+			
 		}
 		close(ptmt);
 		return register;
@@ -64,13 +66,13 @@ public class KBODAOImpl implements KBODAO {
 	@Override
 	public boolean regemailCheck(Connection con, String email)
 			throws SQLException {
-		boolean result = false;
+		boolean result = true;
 		PreparedStatement ptmt = con.prepareStatement(emailCheck);
 		ptmt.setString(1, email);
 		ResultSet rs = ptmt.executeQuery();
 		if (rs.next()) {
-			System.out.println("데이터있음");
-			result = true;
+			System.out.println("이메일중복있음");
+			result = false;
 		}
 		close(rs, ptmt, null);
 		return result;
@@ -139,6 +141,29 @@ public class KBODAOImpl implements KBODAO {
 		
 		close(ptmt);
 		return result;
+	}
+
+	@Override
+	public int insert(KBOLoginDTO register, Connection con) throws SQLException {
+		// TODO Auto-generated method stub
+		PreparedStatement ptmt = con.prepareStatement(MEMBER_REGISTER1);
+		ptmt.setString(1, register.getEmail());
+		ptmt.setString(2, register.getPassword());
+		ptmt.setString(3, register.getName());
+		ptmt.setString(4, register.getTeam_cd());
+		ptmt.setInt(5, register.getPoint());
+		
+		int result = ptmt.executeUpdate();
+		if (result > 0) {
+			System.out.println("입력성공");
+		} else {
+			System.out.println("입력실패");
+		
+			
+		}
+		close(ptmt);
+		return result;
+
 	}
 
 }

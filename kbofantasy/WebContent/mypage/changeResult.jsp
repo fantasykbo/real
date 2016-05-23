@@ -9,6 +9,7 @@
 	<body>
 		<script type="text/javascript">
 		alert("비밀번호 변경 성공");
+		window.close();
 		</script>
 		
 	</body>

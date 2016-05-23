@@ -18,6 +18,7 @@ public class KBOLoginDTO {
 		super();
 		this.email = email;
 		this.password = password;
+		this.member_cd=getMember_cd();
 	}
 
 

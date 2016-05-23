@@ -29,18 +29,18 @@
               <div class="form-group">
                 <label class="control-label" for="exampleInputPassword1">Email</label>
                 <input class="form-control" id="email" placeholder="Email" type="email" 
-                required name="email">
+                required name="email" maxlength="20">
               </div>
              
               <div class="form-group">
                 <label class="control-label" for="exampleInputPassword1">New Password</label>
                 <input class="form-control" id="NewPassword" placeholder="New Password" type="password" 
-                required name="password">
+                required name="password" maxlength="10">
               </div>
               <div class="form-group">
                 <label class="control-label" for="exampleInputPassword1">Confirm Password</label>
                 <input class="form-control" id="ConfirmPassword" placeholder="Confirm Password" type="password"
-                required onblur="CheckPass()" name="password1">
+                required onblur="CheckPass()" name="password1" maxlength="10">
               </div>
               <span id="checkVal"> </span>
               <button type="submit" class="btn btn-default">Submit</button>

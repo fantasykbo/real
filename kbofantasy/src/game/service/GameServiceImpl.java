@@ -27,4 +27,20 @@ public class GameServiceImpl implements GameService {
 		return mypinfolist;
 	}
 
+	@Override
+	public ArrayList<GamePlayerDTO> ScoutPlayer(String position_dt) {
+		System.out.println("선수영입 서비스");
+		ArrayList<GamePlayerDTO> myscoutplayer = new ArrayList<GamePlayerDTO>(); 
+		Connection con = getConnect();
+		System.out.println("서비스포지션"+position_dt);
+		GameDao dao = new GameDaoImpl();
+		try {
+			myscoutplayer = dao.ScoutMyPlayer(position_dt, con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return myscoutplayer;
+	}
+
 }

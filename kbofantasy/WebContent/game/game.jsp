@@ -38,7 +38,11 @@
 		GamePlayerDTO lfdto = mypinfolist.get(8);
 		GamePlayerDTO cfdto = mypinfolist.get(9);
 		GamePlayerDTO rfdto = mypinfolist.get(10);
-		
+	
+	if(request.getAttribute("myscoutplayer")==null){
+	}else{
+		ArrayList<GamePlayerDTO> myscoutplayer = (ArrayList<GamePlayerDTO>)request.getAttribute("myscoutplayer"); 
+	}
 	
 %>
 <script type="text/javascript">
@@ -82,13 +86,280 @@
 		$("#setcap").on("click", function() {
 			alert("캡틴설정");
 		});
+		
 		$(".player").on("click", function() {
 			$(":hidden").show();
 		});
+		
 		$("#close").on("click", function() {
 			$("#selection").hide();
 		});
+		
+		$("#sp").on("click", function() {
+			//에이작스동작
+			alert("동작");
+			sp();			
+		});
+		
+		$("#rp").on("click", function() {
+			alert("동작");
+			rp();			
+		});
+		
+		$("#c").on("click", function() {
+			//에이작스동작
+			alert("동작");
+			c();			
+		});
+		
+		$("#b1").on("click", function() {
+			//에이작스동작
+			alert("동작");
+			b1();			
+		});
+		
+		$("#b2").on("click", function() {
+			//에이작스동작
+			alert("동작");
+			b2();			
+		});
+		
+		$("#b3").on("click", function() {
+			//에이작스동작
+			alert("동작");
+			b3();			
+		});
+		
+		$("#ss").on("click", function() {
+			//에이작스동작
+			alert("동작");
+			ss();			
+		});
+		
+		$("#lf").on("click", function() {
+			//에이작스동작
+			alert("동작");
+			lf();			
+		});
+		
+		$("#cf").on("click", function() {
+			//에이작스동작
+			alert("동작");
+			cf();
+		});
+		
+		$("#rf").on("click", function() {
+			//에이작스동작
+			alert("동작");
+			rf();			
+		});
+		
+		$("#dh").on("click", function() {
+			//에이작스동작
+			alert("동작");
+			dh();
+		});			
 	});
+	
+	function sp() {
+		xhr = new XMLHttpRequest();
+		position_dt = "P";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function rp() {
+		xhr = new XMLHttpRequest();
+		position_dt = "P";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function c() {
+		xhr = new XMLHttpRequest();
+		position_dt = "C";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function b1() {
+		xhr = new XMLHttpRequest();
+		position_dt = "1B";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function b2() {
+		xhr = new XMLHttpRequest();
+		position_dt = "2B";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function b3() {
+		xhr = new XMLHttpRequest();
+		position_dt = "3B";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function ss() {
+		xhr = new XMLHttpRequest();
+		position_dt = "SS";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do?", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function lf() {
+		xhr = new XMLHttpRequest();
+		position_dt = "LF";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do?", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function cf() {
+		xhr = new XMLHttpRequest();
+		position_dt = "CF";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do?", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function rf() {
+		xhr = new XMLHttpRequest();
+		position_dt = "RF";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do?", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function dh() {
+		xhr = new XMLHttpRequest();
+		position_dt = "DH";
+		member_cd = '<%=member_cd%>';
+		mypinfolist = '<%=mypinfolist%>';
+		xhr.onreadystatechange = emailcheck;
+		xhr.open("POST", "/kbofantasy/scoutplayer.do?", true);
+		xhr.setRequestHeader("Content-type",
+				"application/x-www-form-urlencoded");
+		
+		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+	}
+	
+	function emailcheck() {
+		console.log("상태값:" + xhr.readyState);
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			/*  document.getElementById("#player_list").innerHTML = xhr.responseText; */
+			myscoutplayer = xhr.responseText;
+			text ="";
+			<%-- text += "<tr><td><img src='http://www.koreabaseball.com/FILE/person/middle/<%= myscoutplayer.get(i).getPlayer_Cd() %>.jpg' width='64' height='68'/></td>" --%>
+			text += "<tr><td>"+myscoutplayer.get(0).getPlayer_Name()+"</td>"
+			text += "<td>" + myscoutplayer.get(0).getPosition_Dt() + "</td>"
+			text += "<td>" + myscoutplayer.get(0).getSalary() + "</td>"
+			text += "<td>" + myscoutplayer.get(0).getTeam_Cd() + "</td>"
+			text += "<td>" + myscoutplayer.get(0).getHand() + "</td></tr>"
+			$("#player_list").append(text);
+		}
+
+	}
+	
+	function selectList(myscoutplayer){
+		
+
+		/*  
+			System.out.println(myscoutplayer.get(i).getPlayer_Cd());
+			System.out.println(myscoutplayer.get(i).getPlayer_Name());
+			System.out.println(myscoutplayer.get(i).getPosition_Dt());
+			System.out.println(myscoutplayer.get(i).getSalary());
+			System.out.println(myscoutplayer.get(i).getTeam_Cd());
+			System.out.println(myscoutplayer.get(i).getHand()); */
+		/* for(i=0;i<myscoutplayer.length;i++){ */
+			text ="";
+			<%-- text += "<tr><td><img src='http://www.koreabaseball.com/FILE/person/middle/<%= myscoutplayer.get(i).getPlayer_Cd() %>.jpg' width='64' height='68'/></td>" --%>
+			text += "<tr><td>"+myscoutplayer.get(0).getPlayer_Name()+"</td>"
+			text += "<td>" + myscoutplayer.get(0).getPosition_Dt() + "</td>"
+			text += "<td>" + myscoutplayer.get(0).getSalary() + "</td>"
+			text += "<td>" + myscoutplayer.get(0).getTeam_Cd() + "</td>"
+			text += "<td>" + myscoutplayer.get(0).getHand() + "</td></tr>"
+			$("#player_list").append(text);
+		}
+	/* function selectList(text){
+		ArrayList<GamePlayerDTO> myscoutplayer = text;
+		for(i=0; i<myscoutplayer.length; i++){
+			ap_text ="";
+			ap_text += "<tr><td>" + myscoutplayer. + "</td>"
+			ap_text += "<td>" + away_pitcher.inn + "</td>"
+			ap_text += "<td>" + away_pitcher.ballCount + "</td>"
+			ap_text += "<td>" + away_pitcher.hit + "</td>"
+			ap_text += "<td>" + away_pitcher.hr + "</td>"
+			ap_text += "<td>" + away_pitcher.bb + "</td>"
+			ap_text += "<td>" + away_pitcher.kk + "</td>"
+			ap_text += "<td>" + away_pitcher.run + "</td>"
+			ap_text += "<td>" + away_pitcher.er + "</td>"
+			ap_text += "<td>" + away_pitcher.todayEra + "</td>"
+			ap_text += "<td>" + away_pitcher.seasonEra + "</td>"
+			ap_text += "<td>" + away_pitcher.vsEra + "</td></tr>"
+			$("#ap_body").append(ap_text);
+		}
+	} */
 </script>
 
 	<div class="section">
@@ -113,6 +384,7 @@
 							<div>일일점수: 0</div>
 							<div>누적점수: <%= user.getPoint() %></div>
 						</div>
+						<form id="myform">
 						<div id="sp" class="player">
 							<span class="img"> <img src="http://www.koreabaseball.com/FILE/person/middle/<%= spdto.getPlayer_Cd() %>.jpg" width="64" height="68"/>
 							</span> <span class="txt"> <span class="pointsp"><%= "No." + spdto.getBack_No() + " " + spdto.getPlayer_Name() %></span> <br><%= spdto.getPosition_Dt() %>
@@ -182,9 +454,11 @@
 
 						<div id="selection" style="display: none;">
 							<div id="pl_select">
-								<div class="title">선수선택</div>
-								<div class="btn-group btn-group-lg">
-									<a class="btn btn-primary dropdown-toggle"
+								<div class="title">
+									선수선택<span id="close">x</span>
+								</div>
+								<div class="player_list" id="player_list">
+									<!-- <a class="btn btn-primary dropdown-toggle"
 										data-toggle="dropdown"> Dropdown <span
 										class="fa fa-caret-down"></span>
 									</a>
@@ -194,97 +468,12 @@
 
 									<input type="text"><span><img
 										src="http://casspoint.mbcplus.com/img/lineup/ico_search2.png"
-										id="search_btn"></span>
+										id="search_btn"></span> -->
 								</div>
-								<div class="btn-group">
-									<a href="#" class="btn btn-default">통합</a> <a href="#"
-										class="btn btn-default">5g평균</a> <a href="#"
-										class="btn btn-default">최근</a> <a href="#"
-										class="btn btn-default">가성비</a> <a href="#"
-										class="btn btn-default">연봉</a>
-								</div>
-								<ul class="list-group">
-									<li class="list-group-item">Cras justo odio</li>
-									<li class="list-group-item">Dapibus ac facilisis in</li>
-									<li class="list-group-item">Morbi leo risus</li>
-									<li class="list-group-item">Porta ac consectetur ac</li>
-									<li class="list-group-item">Vestibulum at eros</li>
-									<li class="list-group-item">Vestibulum at eros</li>
-									<li class="list-group-item">Vestibulum at eros</li>
-								</ul>
-							</div>
-							<div id="pl_info">
-								<div class="title">
-									선수정보<span id="close">x</span>
-								</div>
-								<div id="profile">
-									<img
-										src="http://casspoint.mbcplus.com/data/player/pic/2015/63x79/11224.jpg" />
-									선수정보
-								</div>
-								<table class="table">
-									<thead>
-										<tr>
-											<th>포지션</th>
-											<th>가성비</th>
-											<th>선택울</th>
-											<th>RANK</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-									</tbody>
-								</table>
-								<a id="outbtn" class="btn btn-primary">방출하기</a>
-								<p id="sum">2016년 포인트 총합</p>
-								<table class="table">
-									<thead>
-										<tr>
-											<th>시즌평균</th>
-											<th>1G최고</th>
-											<th>1G최저</th>
-											<th>총평균</th>
-											<th>원정평균</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-											<td>@mdo</td>
-										</tr>
-									</tbody>
-								</table>
-								<table class="table">
-									<thead>
-										<tr>
-											<th>승리경기평균</th>
-											<th>패배경기평균</th>
-											<th>최근5G평균</th>
-											<th>최근10평균</th>
-											<th>가성비</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-									</tbody>
-								</table>
 							</div>
 						</div>
+						</form>
 					</div>
-
 				</div>
 			</div>
 		</div>

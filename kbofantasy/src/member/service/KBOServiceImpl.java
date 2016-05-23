@@ -122,4 +122,19 @@ public class KBOServiceImpl implements KBOService {
 		return result;
 	}
 
+	@Override
+	public int register1(KBOLoginDTO register) {
+		Connection con = getConnect();
+		KBODAO dao = new KBODAOImpl();
+		int result = 0;
+		try{
+			result = dao.insert(register, con);
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(con);
+		}
+		return result;
+	}
+
 }

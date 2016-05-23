@@ -2,11 +2,13 @@ package member.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import member.dto.KBOLoginDTO;
 import member.service.KBOService;
@@ -31,10 +33,38 @@ public class RegisterServlet extends HttpServlet {
 	    
 	    KBOService service=new KBOServiceImpl();
 	    KBOLoginDTO register= new KBOLoginDTO(name,email,password);
+	    int result = service.register1(register);
+	    //boolean emailchk = service.emailcheck(email);
+	    //service.register(register);
 	    
-	    service.register(register);
+	    
+	    
+	    if (result==1) {
+	    	RequestDispatcher rd = request
+					.getRequestDispatcher("/register/registerResult.jsp");
+			rd.forward(request, response);
+	    	
+			
+		}else{
+			RequestDispatcher rd1 = request
+					.getRequestDispatcher("/register/registerFail.jsp");
+			rd1.forward(request, response);
+			//response.sendRedirect("/register/registerFail.jsp");
+			if(name==null){
+				//response.sendRedirect("/register/registerFail.jsp");
+	    		RequestDispatcher rd2 = request
+						.getRequestDispatcher("/register/registerFail.jsp");
+				rd2.forward(request, response);
+	    	}else if(password==null){
+	    		RequestDispatcher rd3 = request
+						.getRequestDispatcher("/register/registerFail.jsp");
+				rd3.forward(request, response);
+	    		//response.sendRedirect("/register/registerFail.jsp");
+	    	
+		}
 	      
 
 	}
 
+	}
 }
