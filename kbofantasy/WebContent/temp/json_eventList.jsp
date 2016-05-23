@@ -1,6 +1,5 @@
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page import="java.util.Date"%>
-<%@page import="record.dto.RecordDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 

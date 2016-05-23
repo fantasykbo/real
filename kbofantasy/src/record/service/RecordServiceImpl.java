@@ -44,7 +44,7 @@ public class RecordServiceImpl implements RecordService {
 		try {
 			data = logic.eventTodayData(year, month, day);
 		} catch (IOException e) {
-			e.printStackTrace();
+			data = "";
 		}
 		return data;
 	}

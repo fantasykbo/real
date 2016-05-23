@@ -22,10 +22,9 @@ public class EventRecordServlet extends HttpServlet{
 		
 		String eventId = request.getParameter("eventId");
 		String pathurl = request.getParameter("pathurl");
+
 		RecordService service = new RecordServiceImpl();
-		
 		String eventData = service.eventRecordData(eventId);
-		System.out.println("servlet : " + eventId + eventData);
 
 		request.setAttribute("pathurl", pathurl);
 		request.setAttribute("eventData", eventData);

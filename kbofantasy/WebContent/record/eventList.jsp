@@ -30,48 +30,52 @@
 		%>
 	$(document).ready(function() {
  		var eventTodayData = '<%= eventTodayData %>';
- 		var obj = JSON.parse(eventTodayData);
- 
-		// 오늘자 실시간 스코어 받아오기
- 		var size = obj.games.length;
- 		for(i = 0; i < size; i++) {
-			switch(obj.games[i].statusCode) {
-				case "1" :
-					$("#" + obj.games[i].gameId + " #event-btn").empty();
-					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"active btn btn-danger btn-sm\" href=\"/kbofantasy/livetext.do?eventId=" + obj.games[i].gameId + "&month=<%= month %>&pathurl=/liveText/Parse_nsd.jsp\">문자중계</a>&nbsp;&nbsp;");
-		 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm disabled\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=/record/eventRecord.jsp\">경기기록</a>");
+ 		// service에서 IOException 처리 하여 파싱에 실패할 경우 "" 값 전송
+ 		if(eventTodayData != "") {
+	 		var obj = JSON.parse(eventTodayData);
+	 
+			// 오늘자 실시간 스코어 받아오기
+	 		var size = obj.games.length;
+	 		for(i = 0; i < size; i++) {
+				switch(obj.games[i].statusCode) {
+					case "0" :	// 경기 시작 전 : 중계 정보 없음
+						break;
+					case "1" :	// 경기 시작 직전 : 문자 중계 할 준비가 되어 있는 상황
+						$("#" + obj.games[i].gameId + " #event-btn").empty();
+						$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"active btn btn-danger btn-sm\" href=\"/kbofantasy/livetext.do?eventId=" + obj.games[i].gameId + "&month=<%= month %>&pathurl=/liveText/Parse_nsd.jsp\">문자중계</a>&nbsp;&nbsp;");
+			 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm disabled\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=/record/eventRecord.jsp\">경기기록</a>");
+						break;
+						
+					case "2" :	// 경기 중 : 문자중계 중
+					case "3" :	// 경기 종료 직후 : 문자중계는 종료되었으나 아직 경기기록이 정리되지 않은 상태
+						$("#" + obj.games[i].gameId + " #event-btn").empty();
+						$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"active btn btn-danger btn-sm\" href=\"/kbofantasy/livetext.do?eventId=" + obj.games[i].gameId + "&month=<%= month %>&pathurl=/liveText/Parse_nsd.jsp\">문자중계</a>&nbsp;&nbsp;");
+			 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm disabled\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=/record/eventRecord.jsp\">경기기록</a>");
+			 			$("#" + obj.games[i].gameId + " #event-score").text(obj.games[i].score.aScore + " (" + obj.games[i].inn + ") " + obj.games[i].score.hScore);
 					break;
-					
-				case "2" :
-				case "3" :
-					$("#" + obj.games[i].gameId + " #event-btn").empty();
-					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"active btn btn-danger btn-sm\" href=\"/kbofantasy/livetext.do?eventId=" + obj.games[i].gameId + "&month=<%= month %>&pathurl=/liveText/Parse_nsd.jsp\">문자중계</a>&nbsp;&nbsp;");
-		 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm disabled\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=/record/eventRecord.jsp\">경기기록</a>");
-		 			$("#" + obj.games[i].gameId + " #event-score").text(obj.games[i].score.aScore + " (" + obj.games[i].inn + ") " + obj.games[i].score.hScore);
-				break;
-
-				case "4" :
-					$("#" + obj.games[i].gameId + " #event-btn").empty();
-					$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-primary btn-sm\" href=\"/kbofantasy/livetext.do?eventId=" + obj.games[i].gameId + "&month=<%= month %>&pathurl=/liveText/Parse_nsd.jsp\">문자중계</a>&nbsp;&nbsp;");
-		 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=/record/eventRecord.jsp\">경기기록</a>");
-		 			$("#" + obj.games[i].gameId + " #event-score").text(obj.games[i].score.aScore + " (종료) " + obj.games[i].score.hScore);
-		 			break;
-					
-			}
+	
+					case "4" :	// 경기 종료 : 경기기록 JSON 데이터를 받아 올 수 있는 상태
+						$("#" + obj.games[i].gameId + " #event-btn").empty();
+						$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-primary btn-sm\" href=\"/kbofantasy/livetext.do?eventId=" + obj.games[i].gameId + "&month=<%= month %>&pathurl=/liveText/Parse_nsd.jsp\">문자중계</a>&nbsp;&nbsp;");
+			 			$("#" + obj.games[i].gameId + " #event-btn").append("<a class=\"btn btn-warning btn-sm\" href=\"eventRecord.do?eventId=" + obj.games[i].gameId + "&pathurl=/record/eventRecord.jsp\">경기기록</a>");
+			 			$("#" + obj.games[i].gameId + " #event-score").text(obj.games[i].score.aScore + " (종료) " + obj.games[i].score.hScore);
+			 			break;
+				}
+	 		}
  		}
-
  		// 이전달, 다음달 링크 생성
  		var year = <%= year %>
  		var month = <%= month %>
  		var prevMonth = month - 1;
  		var nextMonth = month + 1;
 		
- 		if(prevMonth >= 4) {
+ 		// 월 변경 좌우 버튼 컨트롤
+ 		if(prevMonth >= 4) { 	// 4월 이전엔 경기가 없음
  			$("#prevMonth").attr("href", "/kbofantasy/record/eventList.do?year=" + year + "&month=" + "0" + prevMonth + "&pathurl=/record/eventList.jsp");
  		} else {
  			$("#prevMonth").attr("href", "javascript:alert('이전 경기가 없습니다.')");
  		}
- 		if(nextMonth <= 9) {
+ 		if(nextMonth <= 9) {	// 10월 이후엔 경기가 없음
 			$("#nextMonth").attr("href", "/kbofantasy/record/eventList.do?year=" + year + "&month=" + "0" + nextMonth + "&pathurl=/record/eventList.jsp");
  		} else {
  			$("#nextMonth").attr("href", "javascript:alert('다음 경기가 없습니다.')");
@@ -135,7 +139,7 @@
 						%>
 									<tr>
 										<td><%= emptyMonth + "." + emptyDate + "(" + emptyDay + ")" %></td>
-										<td colspan="6">경기가 없습니다.</td></tr>
+										<td colspan="6">경기가 없는 날입니다.  오늘만이라도 일상을 돌아보세요.</td></tr>
 								<% } %>
 
 							<tr id="<%= dto.getEventCode() %>">
@@ -143,6 +147,7 @@
 								<td><%= dto.getEventDate().substring(11, 16) %></td>
 								<td><img src="/kbofantasy/images/icon/<%= dto.getaTeamCode() %>.png"/><%= dto.getaTeamSName() %></td>
 								<td id="event-score">
+									// 경기 상태가 4 : 종료이면 스코어 표출
 									<% if(dto.getEventStatus().equals("4")) { %>
 										<%= dto.getaScore() %> : <%= dto.gethScore() %>
 									<% } else { %>
@@ -152,11 +157,14 @@
 								<td><%= dto.gethTeamSName() %><img src="/kbofantasy/images/icon/<%= dto.gethTeamCode() %>.png"/></td>
 								<td><%= dto.getStadium() %></td>
 								<td id="event-btn">
+									// 경기 취소 flag가 Y : 취소된 경기일 경우 취소 표시 
 									<% if(dto.getCancelFlag().equals("Y")) { %>
 										<span>해당 경기는 현지 사정에 의해 취소되었습니다.</span>
+									// 취소된 경기가 아니고 종료된 경기일 경우 버튼 활성화
 									<% } else if(dto.getEventStatus().equals("4")){ %>
 										<a class="btn btn-primary btn-sm" href="/kbofantasy/livetext.do?eventId=<%= dto.getEventCode() %>&month=<%= month %>&pathurl=/liveText/Parse_nsd.jsp">문자중계</a>
 										<a class="btn btn-warning btn-sm" href="eventRecord.do?eventId=<%= dto.getEventCode() %>&pathurl=/record/eventRecord.jsp">경기기록</a>
+									// 종료되지 않은 경우 버튼 비활성화
 									<% } else { %>
 										<a class="btn btn-primary btn-sm disabled" href="/kbofantasy/livetext.do?eventId=<%= dto.getEventCode() %>&month=<%= month %>&pathurl=/liveText/Parse_nsd.jsp">문자중계</a>
 										<a class="btn btn-warning btn-sm disabled" href="eventRecord.do?eventId=<%= dto.getEventCode() %>&pathurl=/record/eventRecord.jsp">경기기록</a>

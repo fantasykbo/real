@@ -27,6 +27,8 @@ public class PlayerInfoServlet extends HttpServlet {
 		RecordService service = new RecordServiceImpl();
 		
 		PlayerDTO playerInfoData = service.playerInfo(playerCode);
+		
+		// 선수 정보가 P, 투수일 경우와 아닐 경우(타자일 경우)로 분기하여 다른 리퀘스트를 뿌려줌
 		if(playerInfoData.getPositionDetail().equals("P")) {
 			PitcherDTO pitcherStatData = service.pitcherStat(playerCode);
 			ArrayList<PitcherDTO> pitcherLastStatList = service.pitcherLastStat(playerCode);
