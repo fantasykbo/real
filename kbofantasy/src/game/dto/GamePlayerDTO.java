@@ -88,7 +88,5 @@ public class GamePlayerDTO {
 				+ ", position_Dt=" + position_Dt + ", hand=" + hand
 				+ ", salary=" + salary + "]";
 	}	
-	
-	
-	
+		
 }

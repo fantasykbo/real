@@ -16,7 +16,7 @@ public class Query {
 									 + "and e.EVENT_ST = 4 "
 									 + "order by EVENT_DATE";
 	
-// 선수 정보 페이지 관련 쿼리들
+	// 선수 정보 페이지 관련 쿼리들
 	// 선수 정보 출력 쿼리
 	public static String PLAYER_INFO = "select p.*, t.TEAM_NM from PLAYER_TB p, TEAM_TB t where p.TEAM_CD = t.TEAM_CD and p.PLAYER_CD = ?";
 	// 타자 성적 출력 쿼리
@@ -116,11 +116,13 @@ public class Query {
 				 + "where position_dt = ?";
 	
 	public static String GET_TOP_USER = "select rownum, member_nm, point from (select * from member_tb order by point desc) where rownum<=20";
+	
 	public static String GET_B_TOP_PLAYER = "select * from (select rownum, r.* "
 			+ "from (select p.PLAYER_NM PNAME, t.TEAM_SNM TEAM, p.POSITION_DT POS, sum(b.POINT) POINT "
 			+ "from RECORD_B_TB b, PLAYER_TB p, TEAM_TB t " + "where b.PLAYER_CD = p.PLAYER_CD "
 			+ "and p.TEAM_CD = t.TEAM_CD " + "group by b.PLAYER_CD, p.PLAYER_NM, t.TEAM_SNM, p.POSITION_DT "
 			+ "order by POINT desc) r " + "where rownum <= 20)";
+	
 	public static String GET_P_TOP_PLAYER ="select * from (select rownum, r.* "
 	+ "from (select p.PLAYER_NM PNAME, t.TEAM_SNM TEAM, p.POSITION_DT POS, sum(b.POINT) POINT "
 	+ "from RECORD_P_TB b, PLAYER_TB p, TEAM_TB t "
@@ -129,5 +131,23 @@ public class Query {
 	+ "group by b.PLAYER_CD, p.PLAYER_NM, t.TEAM_SNM, p.POSITION_DT "
 	+ "order by POINT desc) r "
 	+ "where rownum <= 20)";	
+	
+	public static String SCOUT_LIST1="select player_cd, back_no, player_nm, "
+			+ "team_cd, position_dt, hand, salary "
+			+ "from player_tb "
+			+ "where position_dt=? ";
+	
+	public static String SCOUT_LIST2="select player_cd, back_no, player_nm, "
+			+ "team_cd, position_dt, hand, salary "
+			+ "from player_tb "
+			+ "where position_dt=? or position_dt=? ";
+	
+	public static String SCOUT_LIST3="select player_cd, back_no, player_nm, "
+			+ "team_cd, position_dt, hand, salary "
+			+ "from player_tb "
+			+ "where position_dt <>=?";
+
+	
+	
 	
 }

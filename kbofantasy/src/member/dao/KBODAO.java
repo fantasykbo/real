@@ -20,4 +20,6 @@ public interface KBODAO {
 	boolean loginCheck(Connection con, String email,String password) throws SQLException;
 
 	int changepassword(String email,String password, Connection con) throws SQLException;
+
+	int insert(KBOLoginDTO register, Connection con) throws SQLException;
 }

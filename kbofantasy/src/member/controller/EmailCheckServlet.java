@@ -28,14 +28,14 @@ public class EmailCheckServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		KBOService service = new KBOServiceImpl();
-		boolean emailchk = service.passcheck(email);
+		boolean emailchk = service.emailcheck(email);
 		
 		String result="";
 		
 		if(emailchk){
-			result="중복된 이메일. 다시 입력하세요";
+			result="사용가능.";
 		}else{
-			result="사용 가능.";
+			result="사용불가.";
 		}
 		
 		

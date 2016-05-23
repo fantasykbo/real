@@ -10,4 +10,5 @@ public interface KBOService {
 	int memberleave(String email,String password);
 	boolean logincheck(String email, String password);
 	int changepass(String email,String password);
+	int register1(KBOLoginDTO register);
 }

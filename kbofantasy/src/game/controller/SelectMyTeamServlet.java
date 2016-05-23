@@ -5,7 +5,10 @@ import game.service.GameService;
 import game.service.GameServiceImpl;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,10 +28,16 @@ public class SelectMyTeamServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		int member_cd = Integer.parseInt(req.getParameter("member_cd"));	
 		String pathurl = req.getParameter("pathurl");	
-		String game_dt = req.getParameter("game_dt");
-		
 		String forwardview = "/layout/layout.jsp";
-		
+		String game_dt = "";
+		//날짜 세팅		
+		if(req.getParameter("game_dt")==null){
+			SimpleDateFormat formatter = new SimpleDateFormat ("yyyy/MM/dd", Locale.KOREA);
+			Date currentDate = new Date ();
+			game_dt = formatter.format (currentDate);
+		}else{
+			game_dt = req.getParameter("game_dt");
+		}
 		GameService service = new GameServiceImpl();
 		ArrayList<GamePlayerDTO> mypinfolist = service.SelectMyList(member_cd, game_dt);
 		System.out.println(mypinfolist.toString());

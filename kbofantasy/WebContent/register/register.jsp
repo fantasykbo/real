@@ -35,14 +35,13 @@
 				if (xhr.readyState == 4 && xhr.status == 200) {
 					//checkVal에 값을 출력 -Ajax통신 결과로 넘어오는 response데이터를 적절하게 출력
 					//mydiv.innerHTML = xhr.responseText
-					document.getElementById("checkVal").innerHTML = xhr.responseText;
+						document.getElementById("checkVal").innerHTML = xhr.responseText;
+					
 				}
 			}
 		</script>
 	</head>
 	<body>
-		<div class="cover-image"
-			style="background-image: url('../images/register.PNG')"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">

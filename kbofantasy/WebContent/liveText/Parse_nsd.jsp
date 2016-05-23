@@ -138,14 +138,14 @@
 	 		//경기가 끝났을 경우 final정보 출력
 	 		if(obj.relayTexts.final.length!=0){
 	 			for(i=0;i<rel.final.length;i++){
-	 		 		finalinfo = $("<li style='font-familiy: arial; color: #ffffff; '>"+rel.final[i].liveText+"</li>");
+	 		 		finalinfo = $("<li style='font: bold, arial; font-size: 20px; color: #ffffff; '>"+rel.final[i].liveText+"</li>");
 	 		 	 	$("#live").children().append(finalinfo);
 	 		 	}
 	 		 	$("#live").children().append("<hr>");
 	 		 	curBatText();
 				gametext(Inn);
 	 		}else{
-	 			offTeam = $("<span style='font: italic bold;color: #00FFFF;'>"+rel.currentOffensiveTeam.liveText+"</span><hr>");
+	 			offTeam = $("<span style='font: bold, arial; font-size: 17px; color: #00FFFF;'>"+rel.currentOffensiveTeam.liveText+"</span><hr>");
 				$("#live").children().append(offTeam);
 				curBatText();
 				gametext(Inn);
@@ -164,14 +164,14 @@
 				/*  Object.keys(obj.relayTexts[Inn]).length object 사이즈 구하기 */
 				reltxt = Object.keys(obj.relayTexts[Inn]).length;				
 				for(j=1; j<=reltxt; j++){	               	
-		            livetext = $("<li>"+obj.relayTexts[i][j-1].liveText+"</li>");
+		            livetext = $("<li style='font: bold, arial; font-size: 13px; color: #a4b9c6;'>"+obj.relayTexts[i][j-1].liveText+"</li>");
 		            $("#live").children().append(livetext);
 		            }
 			}
 		}else{
 			reltxt = Object.keys(obj.relayTexts[Inn]).length;
 			for(j=0; j<reltxt; j++){	               	
-	            livetext = $("<li>"+obj.relayTexts[Inn][j].liveText+"</li>");
+	            livetext = $("<li style='font: arial; font-size: 14px; color:#a4b9c6;'>"+obj.relayTexts[Inn][j].liveText+"</li>");
 	            $("#live").children().append(livetext);
 	            }			
 		}
@@ -181,13 +181,13 @@
 	function curBatText(){
 			// 현재 공격 팀 출력
 			//현재 타자이름 출력
-			livecurBat = $("<li>"+"현재타자 : "+curBat+"</li>");
+			livecurBat = $("<li style='font:  arial; font-size: 15px; color: #ff8a19;'>"+"현재타자 : "+curBat+"</li>");
 			$("#live").children().append(livecurBat);		
 			$("#live").children().append("<hr>");
 			
 			//현재 타자 배팅정보 출력
 			for(i=0; i< curTxtSize; i++){
-				curTxt = $("<li>"+obj.relayTexts.currentBatterTexts[i].liveText+"</li>");
+				curTxt = $("<li style='font:  arial; font-size: 15px; color: #beaed4;'>"+obj.relayTexts.currentBatterTexts[i].liveText+"</li>");
 				$("#live").children().append(curTxt);
 
 			}
@@ -472,9 +472,9 @@
 						</ul>
 						
 					</div>
-					<div style="border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; overflow:scroll; height:700px; background-color:#1a1c22 color:white" class="col-md-12" id="live"  >
-						<ol class="lead list-unstyled" id="live1">
-						</ol>
+					<div style="border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; overflow:scroll; height:700px; background-color:#1a1c22;" class="col-md-12" id="live"  >
+						<ul style="list-style : none; padding-left:0px;"  id="live1">
+						</ul>
 					</div>
 				</div>
 				<div class="col-md-8">

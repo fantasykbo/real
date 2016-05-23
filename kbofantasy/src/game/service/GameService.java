@@ -6,4 +6,6 @@ import java.util.ArrayList;
 
 public interface GameService {
 	ArrayList<GamePlayerDTO> SelectMyList(int member_cd, String game_dt);
+
+	ArrayList<GamePlayerDTO> ScoutPlayer(String position_dt);
 }

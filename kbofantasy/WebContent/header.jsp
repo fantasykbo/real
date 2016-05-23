@@ -89,8 +89,6 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="javascript:eventListUrl()">일정 / 결과</a></li>
 									<li><a href="/kbofantasy/record/teamTable.do?pathurl=/record/teamTable.jsp">팀 순위</a></li>
-									<li><a href="#">선수 기록</a></li>
-
 								</ul>
 							</div>
 							<div class="btn-group btn-group-lg">
