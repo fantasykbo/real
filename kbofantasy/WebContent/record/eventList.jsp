@@ -147,7 +147,7 @@
 								<td><%= dto.getEventDate().substring(11, 16) %></td>
 								<td><img src="/kbofantasy/images/icon/<%= dto.getaTeamCode() %>.png"/><%= dto.getaTeamSName() %></td>
 								<td id="event-score">
-									// 경기 상태가 4 : 종료이면 스코어 표출
+									<!-- 경기 상태가 4 : 종료이면 스코어 표출 -->
 									<% if(dto.getEventStatus().equals("4")) { %>
 										<%= dto.getaScore() %> : <%= dto.gethScore() %>
 									<% } else { %>
@@ -157,14 +157,14 @@
 								<td><%= dto.gethTeamSName() %><img src="/kbofantasy/images/icon/<%= dto.gethTeamCode() %>.png"/></td>
 								<td><%= dto.getStadium() %></td>
 								<td id="event-btn">
-									// 경기 취소 flag가 Y : 취소된 경기일 경우 취소 표시 
+									<!-- 경기 취소 flag가 Y : 취소된 경기일 경우 취소 표시 --> 
 									<% if(dto.getCancelFlag().equals("Y")) { %>
 										<span>해당 경기는 현지 사정에 의해 취소되었습니다.</span>
-									// 취소된 경기가 아니고 종료된 경기일 경우 버튼 활성화
+									<!-- 취소된 경기가 아니고 종료된 경기일 경우 버튼 활성화 -->
 									<% } else if(dto.getEventStatus().equals("4")){ %>
 										<a class="btn btn-primary btn-sm" href="/kbofantasy/livetext.do?eventId=<%= dto.getEventCode() %>&month=<%= month %>&pathurl=/liveText/Parse_nsd.jsp">문자중계</a>
 										<a class="btn btn-warning btn-sm" href="eventRecord.do?eventId=<%= dto.getEventCode() %>&pathurl=/record/eventRecord.jsp">경기기록</a>
-									// 종료되지 않은 경우 버튼 비활성화
+									<!-- 종료되지 않은 경우 버튼 비활성화 -->
 									<% } else { %>
 										<a class="btn btn-primary btn-sm disabled" href="/kbofantasy/livetext.do?eventId=<%= dto.getEventCode() %>&month=<%= month %>&pathurl=/liveText/Parse_nsd.jsp">문자중계</a>
 										<a class="btn btn-warning btn-sm disabled" href="eventRecord.do?eventId=<%= dto.getEventCode() %>&pathurl=/record/eventRecord.jsp">경기기록</a>
