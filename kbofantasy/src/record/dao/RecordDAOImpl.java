@@ -17,6 +17,7 @@ import record.dto.PlayerDTO;
 
 public class RecordDAOImpl implements RecordDAO {
 
+	// 경기일정결과 목록 DB Select
 	@Override
 	public ArrayList<EventDTO> eventList(String year, String month,
 			Connection con) throws SQLException {
@@ -38,7 +39,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return list;
 	}
-	
+	// 순위표 DB select
 	@Override
 	public ArrayList<EventDTO> teamTable(Connection con) throws SQLException {
 		ArrayList<EventDTO> list = new ArrayList<EventDTO>();
@@ -59,7 +60,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return list;
 	}
-
+	// 선수정보 DB select
 	@Override
 	public PlayerDTO playerInfo(String playerCode, Connection con) throws SQLException {
 		PlayerDTO dto = null;
@@ -85,8 +86,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return dto;
 	}
-	
-
+	// 타자 성적 DB select
 	@Override
 	public BatterDTO batterStat(String playerCode, Connection con)
 			throws SQLException {
@@ -119,7 +119,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return dto;
 	}
-
+	// 타자 최근 10경기 성적 DB select
 	@Override
 	public ArrayList<BatterDTO> batterLastStat(String playerCode, Connection con)
 			throws SQLException {
@@ -152,7 +152,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return list;
 	}
-
+	// 투수 성적 DB select
 	@Override
 	public PitcherDTO pitcherStat(String playerCode, Connection con)
 			throws SQLException {
@@ -182,7 +182,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return dto;
 	}
-
+	// 투수 최근 10경기 성적 DB select
 	@Override
 	public ArrayList<PitcherDTO> pitcherLastStat(String playerCode,
 			Connection con) throws SQLException {
@@ -212,8 +212,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return list;
 	}
-
-
+	
 	@Override
 	public int dailyRecord(ArrayList<EventDTO> list, Connection con)
 			throws SQLException {
@@ -230,7 +229,6 @@ public class RecordDAOImpl implements RecordDAO {
 			ptmt.setString(5, list.get(i).getEventCode());
 			result += ptmt.executeUpdate();
 		}
-		
 		close(ptmt);
 		return result;
 	}	
