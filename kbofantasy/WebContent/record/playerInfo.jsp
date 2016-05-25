@@ -34,9 +34,10 @@
 	ArrayList<String> statHeader = new ArrayList<String>();
 	ArrayList<String> lastHeader = new ArrayList<String>();
 	PlayerDTO info = (PlayerDTO) request.getAttribute("playerInfoData");
+	// 선수 정보에서 포지션이 P, 투수일 경우 
 	Boolean isP = info.getPositionDetail().equals("P");
 
-	
+	// 기록테이블을 투수모드로 변경
   	if(isP) {
   		pitcherStat = (PitcherDTO) request.getAttribute("pitcherStatData");
 	 	pitcherLastStatList = (ArrayList<PitcherDTO>) request.getAttribute("pitcherLastStatList");
@@ -44,11 +45,12 @@
 		String[] lastH = {"날짜", "포인트", "결과", "방어율", "이닝", "타자", "투구수", "탈삼진", "피안타", "피홈런", "4사구", "실점", "자책점"};
 		Collections.addAll(statHeader, statH);
 		Collections.addAll(lastHeader, lastH);
+	// 타자모드
   	} else {
 	 	batterStat = (BatterDTO) request.getAttribute("batterStatData");
 	 	batterLastStatList = (ArrayList<BatterDTO>) request.getAttribute("batterLastStatList");
-		String[] statH = {"포인트", "경기", "타율", "출루율", "장타율", "OPS", "타수", "1루타", "2루타", "3루타", "홈런", "득점", "타점", "4사구", "고의4구", "희생타", "아웃", "병살타"};
-		String[] lastH = {"날짜", "포인트", "타율", "타수", "1루타", "2루타", "3루타", "홈런", "득점", "타점", "4사구", "고의4구", "희생타", "아웃", "병살타"};
+		String[] statH = {"포인트", "경기", "타율", "출루율", "장타율", "OPS", "타수", "1루타", "2루타", "3루타", "홈런", "득점", "타점", "4사구", "고의4구", "희생타", "아웃", "삼진", "병살타"};
+		String[] lastH = {"날짜", "포인트", "타율", "타수", "1루타", "2루타", "3루타", "홈런", "득점", "타점", "4사구", "고의4구", "희생타", "아웃", "삼진", "병살타"};
 
 		Collections.addAll(statHeader, statH);
 		Collections.addAll(lastHeader, lastH);
@@ -183,6 +185,7 @@
 								<td><%= batterStat.getIb() %></td>
 								<td><%= batterStat.getSh() %></td>
 								<td><%= batterStat.getOt() %></td>
+								<td><%= batterStat.getSo() %></td>
 								<td><%= batterStat.getDp() %></td>
 							<% } %>
 							</tr>
@@ -255,6 +258,7 @@
 								<td><%= last.getIb() %></td>
 								<td><%= last.getSh() %></td>
 								<td><%= last.getOt() %></td>
+								<td><%= last.getSo() %></td>
 								<td><%= last.getDp() %></td>
 							</tr>
 						<% } %>

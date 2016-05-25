@@ -213,50 +213,6 @@ public class RecordDAOImpl implements RecordDAO {
 		return list;
 	}
 
-		
-//	@Override
-//	public int playerRecord(ArrayList<RecordDTO> list, Connection con)
-//			throws SQLException {
-//		
-//		int result = 0;
-//		
-//		PreparedStatement ptmt = con.prepareStatement(RECORD_INSERT);
-//		int size = list.size();
-//		for(int i = 0; i < size; i++) {
-//			ptmt.setString(1, list.get(i).getEventCode());
-//			ptmt.setString(2, list.get(i).getPlayerCode());
-//			ptmt.setInt(3, list.get(i).getHpa());
-//			ptmt.setFloat(4, list.get(i).getHhra());
-//			ptmt.setInt(5, list.get(i).getHh1());
-//			ptmt.setInt(6, list.get(i).getHh2());
-//			ptmt.setInt(7, list.get(i).getHh3());
-//			ptmt.setInt(8, list.get(i).getHhr());
-//			ptmt.setInt(9, list.get(i).getHrs());
-//			ptmt.setInt(10, list.get(i).getHrb());
-//			ptmt.setInt(11, list.get(i).getHbb());
-//			ptmt.setInt(12, list.get(i).getHib());
-//			ptmt.setInt(13, list.get(i).getHsh());
-//			ptmt.setInt(14, list.get(i).getHot());
-//			ptmt.setInt(15, list.get(i).getHso());
-//			ptmt.setInt(16, list.get(i).getHdp());
-//
-//			ptmt.setString(17, list.get(i).getPwlhs());
-//			ptmt.setFloat(18, list.get(i).getPera());
-//			ptmt.setInt(19, list.get(i).getPinn());
-//			ptmt.setInt(20, list.get(i).getPpa());
-//			ptmt.setInt(21, list.get(i).getPbf());
-//			ptmt.setInt(22, list.get(i).getPkk());
-//			ptmt.setInt(23, list.get(i).getPht());
-//			ptmt.setInt(24, list.get(i).getPhr());
-//			ptmt.setInt(25, list.get(i).getPbb());
-//			ptmt.setInt(26, list.get(i).getPrs());
-//			ptmt.setInt(27, list.get(i).getPer());
-//			ptmt.setInt(28, list.get(i).getPoint());
-//			result += ptmt.executeUpdate();
-//		}
-//		close(ptmt);
-//		return result;
-//	}
 
 	@Override
 	public int dailyRecord(ArrayList<EventDTO> list, Connection con)
