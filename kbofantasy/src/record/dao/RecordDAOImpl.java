@@ -17,6 +17,7 @@ import record.dto.PlayerDTO;
 
 public class RecordDAOImpl implements RecordDAO {
 
+	// 경기일정결과 목록 DB Select
 	@Override
 	public ArrayList<EventDTO> eventList(String year, String month,
 			Connection con) throws SQLException {
@@ -38,7 +39,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return list;
 	}
-	
+	// 순위표 DB select
 	@Override
 	public ArrayList<EventDTO> teamTable(Connection con) throws SQLException {
 		ArrayList<EventDTO> list = new ArrayList<EventDTO>();
@@ -59,7 +60,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return list;
 	}
-
+	// 선수정보 DB select
 	@Override
 	public PlayerDTO playerInfo(String playerCode, Connection con) throws SQLException {
 		PlayerDTO dto = null;
@@ -85,8 +86,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return dto;
 	}
-	
-
+	// 타자 성적 DB select
 	@Override
 	public BatterDTO batterStat(String playerCode, Connection con)
 			throws SQLException {
@@ -119,7 +119,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return dto;
 	}
-
+	// 타자 최근 10경기 성적 DB select
 	@Override
 	public ArrayList<BatterDTO> batterLastStat(String playerCode, Connection con)
 			throws SQLException {
@@ -152,7 +152,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return list;
 	}
-
+	// 투수 성적 DB select
 	@Override
 	public PitcherDTO pitcherStat(String playerCode, Connection con)
 			throws SQLException {
@@ -182,7 +182,7 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return dto;
 	}
-
+	// 투수 최근 10경기 성적 DB select
 	@Override
 	public ArrayList<PitcherDTO> pitcherLastStat(String playerCode,
 			Connection con) throws SQLException {
@@ -212,52 +212,8 @@ public class RecordDAOImpl implements RecordDAO {
 		close(ptmt);
 		return list;
 	}
-
-		
-//	@Override
-//	public int playerRecord(ArrayList<RecordDTO> list, Connection con)
-//			throws SQLException {
-//		
-//		int result = 0;
-//		
-//		PreparedStatement ptmt = con.prepareStatement(RECORD_INSERT);
-//		int size = list.size();
-//		for(int i = 0; i < size; i++) {
-//			ptmt.setString(1, list.get(i).getEventCode());
-//			ptmt.setString(2, list.get(i).getPlayerCode());
-//			ptmt.setInt(3, list.get(i).getHpa());
-//			ptmt.setFloat(4, list.get(i).getHhra());
-//			ptmt.setInt(5, list.get(i).getHh1());
-//			ptmt.setInt(6, list.get(i).getHh2());
-//			ptmt.setInt(7, list.get(i).getHh3());
-//			ptmt.setInt(8, list.get(i).getHhr());
-//			ptmt.setInt(9, list.get(i).getHrs());
-//			ptmt.setInt(10, list.get(i).getHrb());
-//			ptmt.setInt(11, list.get(i).getHbb());
-//			ptmt.setInt(12, list.get(i).getHib());
-//			ptmt.setInt(13, list.get(i).getHsh());
-//			ptmt.setInt(14, list.get(i).getHot());
-//			ptmt.setInt(15, list.get(i).getHso());
-//			ptmt.setInt(16, list.get(i).getHdp());
-//
-//			ptmt.setString(17, list.get(i).getPwlhs());
-//			ptmt.setFloat(18, list.get(i).getPera());
-//			ptmt.setInt(19, list.get(i).getPinn());
-//			ptmt.setInt(20, list.get(i).getPpa());
-//			ptmt.setInt(21, list.get(i).getPbf());
-//			ptmt.setInt(22, list.get(i).getPkk());
-//			ptmt.setInt(23, list.get(i).getPht());
-//			ptmt.setInt(24, list.get(i).getPhr());
-//			ptmt.setInt(25, list.get(i).getPbb());
-//			ptmt.setInt(26, list.get(i).getPrs());
-//			ptmt.setInt(27, list.get(i).getPer());
-//			ptmt.setInt(28, list.get(i).getPoint());
-//			result += ptmt.executeUpdate();
-//		}
-//		close(ptmt);
-//		return result;
-//	}
-
+	
+	// 전날경기기록 DB update
 	@Override
 	public int dailyRecord(ArrayList<EventDTO> list, Connection con)
 			throws SQLException {
@@ -274,11 +230,11 @@ public class RecordDAOImpl implements RecordDAO {
 			ptmt.setString(5, list.get(i).getEventCode());
 			result += ptmt.executeUpdate();
 		}
-		
 		close(ptmt);
 		return result;
 	}	
 	
+	// 전날경기 타자기록 DB insert
 	@Override
 	public String batterRecord(ArrayList<BatterDTO> list, Connection con)
 			throws SQLException {
@@ -315,7 +271,7 @@ public class RecordDAOImpl implements RecordDAO {
 		resultStr = resultInsert + " Updates to RECORD_B_TB / " + resultMerge + " Merges to PLAYER_TB";
 		return resultStr;
 	}
-
+	// 전날경기 투수기록 DB insert
 	@Override
 	public String pitcherRecord(ArrayList<PitcherDTO> list, Connection con)
 			throws SQLException {
@@ -350,12 +306,13 @@ public class RecordDAOImpl implements RecordDAO {
 		return resultStr;
 	}
 
+	// 어제 경기 투수기록 
 	@Override
 	public int gamePoint(ArrayList<MyTeamDTO> list, Connection con)
 			throws SQLException {
 		int result = 0;
 		MyTeamDTO dto = null;
-		PreparedStatement ptmt = con.prepareStatement(PLAYER_P_POINT_MERGE);
+		PreparedStatement ptmt = con.prepareStatement(GAME_POINT_MERGE);
 		int size = list.size();
 		for(int i = 0; i < size; i++) {
 			dto = list.get(i);
@@ -388,10 +345,11 @@ public class RecordDAOImpl implements RecordDAO {
 		return result;
 	}
 
+	// GAME_TB에서 얻은 누적 포인트를 MEMBER_TB로 DB MERGE
 	@Override
 	public int memberPoint(Connection con) throws SQLException {
 		int result = 0;
-		PreparedStatement ptmt = con.prepareStatement(GAME_POINT_MERGE);
+		PreparedStatement ptmt = con.prepareStatement(MEMBER_POINT_MERGE);
 		result = ptmt.executeUpdate();
 		return result;
 	}

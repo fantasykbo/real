@@ -22,7 +22,8 @@ import record.logic.RecordLogicImpl;
 
 public class RecordServiceImpl implements RecordService {
 
-// 세부경기결과 크롤링
+	// record-경기일정/결과
+	// 세부경기결과 크롤링
 	@Override
 	public String eventRecordData(String eventId) {
 		String data = new String();
@@ -31,12 +32,12 @@ public class RecordServiceImpl implements RecordService {
 			data = logic.eventRecordData(eventId);
 		} catch (IOException e) {
 			e.printStackTrace();
+			data = "fail";
 		}
-//		System.out.println("service : " + eventId + data);
 		return data;
 	}
 
-// 오늘경기일정결과 크롤링
+	// 오늘경기일정결과 크롤링(from nsd)
 	@Override
 	public String eventTodayData(String year, String month, String day) {
 		String data = new String();
@@ -49,7 +50,7 @@ public class RecordServiceImpl implements RecordService {
 		return data;
 	}
 
-// 경기일정결과 DB 호출
+	// 경기일정결과 DB 호출
 	@Override
 	public ArrayList<EventDTO> eventList(String year, String month) {
 		ArrayList<EventDTO> list = new ArrayList<EventDTO>();
@@ -65,7 +66,7 @@ public class RecordServiceImpl implements RecordService {
 		return list;
 	}
 	
-// 기록실 타자 기록 파싱 로직
+	// 기록실 타자 기록 파싱 로직
 	@Override
 	public String batterRecordData(String eventId) {
 		String eventRecordData = new String();
@@ -87,7 +88,7 @@ public class RecordServiceImpl implements RecordService {
 		return result;
 	}
 
-// 기록실 투수 기록 파싱 로직
+	// 기록실 투수 기록 파싱 로직
 	@Override
 	public String pitcherRecordData(String eventId) {
 		String eventRecordData = new String();
@@ -109,7 +110,7 @@ public class RecordServiceImpl implements RecordService {
 		return result;
 	}
 
-// 경기일정결과 매일 파싱해서 DB 업데이트
+	// 경기일정결과 매일 파싱해서 DB 업데이트
 	@Override
 	public int dailyRecordData(String year, String month, String day) {
 		String eventTodayData = new String();
@@ -215,16 +216,5 @@ public class RecordServiceImpl implements RecordService {
 		}
 		return list;
 	}
-	
-	
-//	// 한달치 크롤링(임시)
-//	@Override
-//	public String eventMonthData(String year, String month) {
-//		String data = new String();
-//		RecordLogic logic = new RecordLogicImpl();
-//		data = logic.eventMonthData(year, month);
-//		return data;
-//	}
 
-	
 }

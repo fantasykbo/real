@@ -43,9 +43,16 @@ public class RecordLogicImpl implements RecordLogic{
 			Matcher m = p.matcher(elmt.html());	// 위에서 정의한 패턴을 40번째 script 태그가 있는 html 소스 안에서 매칭하도록 정의
 			
 			while(m.find()) {
+<<<<<<< HEAD
 				eventRecordData = m.group(1);	// 매칭된 패턴을 넘겨줄 String에 저장
+=======
+				eventRecordData = m.group(1);
+>>>>>>> branch 'master' of https://github.com/fantasykbo/real.git
 			}
+<<<<<<< HEAD
 		} else {
+=======
+>>>>>>> branch 'master' of https://github.com/fantasykbo/real.git
 		}
 		// 입력된 데이터 중 문제가 되는 패턴 찾아서 삭제
 		eventRecordData = eventRecordData.replace("\\r\\n", "");

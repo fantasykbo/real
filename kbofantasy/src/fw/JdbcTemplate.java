@@ -2,6 +2,7 @@ package fw;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,12 +32,12 @@ public class JdbcTemplate {
 		return con;
 	}
 
-	public static void close(ResultSet rs, Statement stmt, Connection con) {
+	public static void close(ResultSet rs, PreparedStatement ptmt, Connection con) {
 		try {
 			if (rs != null)
 				rs.close();
-			if (stmt != null)
-				stmt.close();
+			if (ptmt != null)
+				ptmt.close();
 			if (con != null)
 				con.close();
 		} catch (SQLException e) {
@@ -52,9 +53,9 @@ public class JdbcTemplate {
 		}
 	}
 	//Statement¹ÝÈ¯
-	public static void close(Statement stmt) {
+	public static void close(PreparedStatement ptmt) {
 		try {
-			if (stmt != null)	stmt.close();
+			if (ptmt != null) ptmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
