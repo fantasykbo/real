@@ -213,6 +213,7 @@ public class RecordDAOImpl implements RecordDAO {
 		return list;
 	}
 	
+	// 전날경기기록 DB update
 	@Override
 	public int dailyRecord(ArrayList<EventDTO> list, Connection con)
 			throws SQLException {
@@ -233,6 +234,7 @@ public class RecordDAOImpl implements RecordDAO {
 		return result;
 	}	
 	
+	// 전날경기 타자기록 DB insert
 	@Override
 	public String batterRecord(ArrayList<BatterDTO> list, Connection con)
 			throws SQLException {
@@ -269,7 +271,7 @@ public class RecordDAOImpl implements RecordDAO {
 		resultStr = resultInsert + " Updates to RECORD_B_TB / " + resultMerge + " Merges to PLAYER_TB";
 		return resultStr;
 	}
-
+	// 전날경기 투수기록 DB insert
 	@Override
 	public String pitcherRecord(ArrayList<PitcherDTO> list, Connection con)
 			throws SQLException {
@@ -304,12 +306,13 @@ public class RecordDAOImpl implements RecordDAO {
 		return resultStr;
 	}
 
+	// 어제 경기 투수기록 
 	@Override
 	public int gamePoint(ArrayList<MyTeamDTO> list, Connection con)
 			throws SQLException {
 		int result = 0;
 		MyTeamDTO dto = null;
-		PreparedStatement ptmt = con.prepareStatement(PLAYER_P_POINT_MERGE);
+		PreparedStatement ptmt = con.prepareStatement(GAME_POINT_MERGE);
 		int size = list.size();
 		for(int i = 0; i < size; i++) {
 			dto = list.get(i);
@@ -342,10 +345,11 @@ public class RecordDAOImpl implements RecordDAO {
 		return result;
 	}
 
+	// GAME_TB에서 얻은 누적 포인트를 MEMBER_TB로 DB MERGE
 	@Override
 	public int memberPoint(Connection con) throws SQLException {
 		int result = 0;
-		PreparedStatement ptmt = con.prepareStatement(GAME_POINT_MERGE);
+		PreparedStatement ptmt = con.prepareStatement(MEMBER_POINT_MERGE);
 		result = ptmt.executeUpdate();
 		return result;
 	}

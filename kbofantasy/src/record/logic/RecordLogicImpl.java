@@ -43,13 +43,10 @@ public class RecordLogicImpl implements RecordLogic{
 			Matcher m = p.matcher(elmt.html());	// 위에서 정의한 패턴을 40번째 script 태그가 있는 html 소스 안에서 매칭하도록 정의
 			
 			while(m.find()) {
-				eventRecordData = m.group(1);	// 
+				eventRecordData = m.group(1);
 			}
-		} else {
-			System.out.println("로직널");
 		}
 		eventRecordData = eventRecordData.replace("\\r\\n", "");
-//		System.out.println("logic : " + eventId + eventRecordData);
 		return eventRecordData;
 	}
 	
@@ -74,7 +71,6 @@ public class RecordLogicImpl implements RecordLogic{
 			eventTodayData = eventTodayData.replace("document.domain=\"naver.com\";parent.sportscallback_gameList(document, ", "");
 			eventTodayData = eventTodayData.replace(");", "");
 		}
-//		System.out.println("logic : " + year + month + day + eventTodayData);
 	    return eventTodayData;
 	}
 	

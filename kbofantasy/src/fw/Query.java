@@ -16,7 +16,7 @@ public class Query {
 									 + "and e.EVENT_ST = 4 "
 									 + "order by EVENT_DATE";
 	
-	// 선수 정보 페이지 관련 쿼리들
+// 선수 정보 페이지 관련 쿼리들
 	// 선수 정보 출력 쿼리
 	public static String PLAYER_INFO = "select p.*, t.TEAM_NM from PLAYER_TB p, TEAM_TB t where p.TEAM_CD = t.TEAM_CD and p.PLAYER_CD = ?";
 	// 타자 성적 출력 쿼리
@@ -41,7 +41,7 @@ public class Query {
 	public static String P_LAST_STAT = "select b.* from (select * from RECORD_P_TB where PLAYER_CD = ? order by EVENT_CD DESC) b where rownum <= 10";	
 
 	
-// timer 자동 실행 쿼리들
+// timer 자동 실행 쿼리들(Background)
 	// 경기결과 업데이트 쿼리
 	public static String EVENT_UPDATE = "update EVENT_TB set A_SCORE = ?, H_SCORE = ?, EVENT_ST = ?, CANCEL_FL = ? where EVENT_CD = ?";
 	// 경기별 타자기록 생성 쿼리
@@ -86,9 +86,6 @@ public class Query {
 											+ "on (m.MEMBER_CD = g.MEMBER_CD) "
 											+ "when matched then "
 											+ "update set m.POINT = g.POINT";
-	
-	
-	
 	
 	public static String MEMBER_LOGIN="select * from member_tb where email=? and password=?";
 	public static String MEMBER_REGISTER="insert into member_tb values(aaa.nextval,?,?,?,?,?)";
