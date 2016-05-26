@@ -94,7 +94,7 @@
 					var description = arr[3];
 					
 					str = "<li class='media'>"
-					+"<div class='media-body'><h4 class='media-heading'><a href='"+link+"' target=\"_blank\">"+title+"</a><small>"+date+"</small></h4>"
+					+"<div class='media-body'><h4 class='media-heading'><a href='"+link+"'>"+title+"</a><small>"+date+"</small></h4>"
 					+"<p>"+ description +"</p></div>"+
 					"</li>";
 					

@@ -25,19 +25,9 @@ public interface RecordLogic {
 
 	// 팀 순위 테이블 파싱 로직
 	String teamTableData(ArrayList<EventDTO> list) throws ParseException;
-	
-	
-	// 선수기록 파싱 로직
-//	ArrayList<RecordDTO> playerRecordData(String eventId, String eventRecordData) throws ParseException;
-	
-	
-	
-	//
+		
+	//오늘경기결과
 	ArrayList<EventDTO> dailyRecordData(String eventTodayData) throws ParseException;
-	
-//	// 한달치 결과 크롤링(임시, 데이터 보관용 - 사용완료)
-//	String eventMonthData(String year, String month);
-
-	
+		
 	
 }

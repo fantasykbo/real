@@ -17,6 +17,7 @@
 			href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
 			rel="stylesheet" type="text/css">
 		<% KBOLoginDTO user= (KBOLoginDTO)session.getAttribute("login"); %>
+		
 		<script type="text/javascript">
 			function eventListUrl() {
 				var d = new Date();

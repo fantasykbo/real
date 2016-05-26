@@ -15,7 +15,7 @@ import record.dto.PitcherDTO;
 import record.dto.PlayerDTO;
 import record.service.RecordService;
 import record.service.RecordServiceImpl;
-// 경기일정/결과 서블릿
+// 선수정보 서블릿
 @WebServlet(name = "playerInfo", urlPatterns = { "/record/playerInfo.do" })
 public class PlayerInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,14 +25,15 @@ public class PlayerInfoServlet extends HttpServlet {
 		String pathurl = request.getParameter("pathurl");
 		
 		RecordService service = new RecordServiceImpl();
-		
+
 		PlayerDTO playerInfoData = service.playerInfo(playerCode);
+		// 불러온 선수정보가 투수면 투수정보 response
 		if(playerInfoData.getPositionDetail().equals("P")) {
 			PitcherDTO pitcherStatData = service.pitcherStat(playerCode);
 			ArrayList<PitcherDTO> pitcherLastStatList = service.pitcherLastStat(playerCode);
 			request.setAttribute("pitcherStatData", pitcherStatData);
 			request.setAttribute("pitcherLastStatList", pitcherLastStatList);
-
+		// 아니면 타자정보 response
 		} else {
 			BatterDTO batterStatData = service.batterStat(playerCode);
 			ArrayList<BatterDTO> batterLastStatList = service.batterLastStat(playerCode);

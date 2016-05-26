@@ -22,7 +22,6 @@ import record.logic.RecordLogicImpl;
 
 public class RecordServiceImpl implements RecordService {
 
-	// record-경기일정/결과
 	// 세부경기결과 크롤링
 	@Override
 	public String eventRecordData(String eventId) {
@@ -133,6 +132,7 @@ public class RecordServiceImpl implements RecordService {
 		return result;
 	}
 
+	// 팀 순위를 위한 경기결과 DB에서 가져오
 	@Override
 	public String teamTableData() {
 		String teamTableData = new String();
@@ -152,6 +152,7 @@ public class RecordServiceImpl implements RecordService {
 		return teamTableData;
 	}
 
+	// 선수정보 가져오는 서비스
 	@Override
 	public PlayerDTO playerInfo(String playerCode) {
 		PlayerDTO dto = new PlayerDTO();
@@ -165,6 +166,7 @@ public class RecordServiceImpl implements RecordService {
 		return dto;
 	}
 
+	// 타자 개인 성적 서비
 	@Override
 	public BatterDTO batterStat(String playerCode) {
 		BatterDTO dto = new BatterDTO();
@@ -178,6 +180,7 @@ public class RecordServiceImpl implements RecordService {
 		return dto;
 	}
 
+	// 타자 최근 10경기 성적 서비
 	@Override
 	public ArrayList<BatterDTO> batterLastStat(String playerCode) {
 		ArrayList<BatterDTO> list = new ArrayList<BatterDTO>();
@@ -191,6 +194,7 @@ public class RecordServiceImpl implements RecordService {
 		return list;
 		}
 
+	// 투수 개인 성적 서비스
 	@Override
 	public PitcherDTO pitcherStat(String playerCode) {
 		PitcherDTO dto = new PitcherDTO();
@@ -203,7 +207,7 @@ public class RecordServiceImpl implements RecordService {
 		}
 		return dto;
 	}
-
+	// 투수 최근 10경기 성적 서비스
 	@Override
 	public ArrayList<PitcherDTO> pitcherLastStat(String playerCode) {
 		ArrayList<PitcherDTO> list = new ArrayList<PitcherDTO>();

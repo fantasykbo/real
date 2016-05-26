@@ -306,7 +306,7 @@ public class RecordDAOImpl implements RecordDAO {
 		return resultStr;
 	}
 
-	// 어제 경기 투수기록 
+	// GAME_TB에서 각 선수가 획득한 포인트 POINT 컬럼으로 MERGE
 	@Override
 	public int gamePoint(ArrayList<MyTeamDTO> list, Connection con)
 			throws SQLException {

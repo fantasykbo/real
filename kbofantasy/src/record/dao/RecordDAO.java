@@ -17,10 +17,6 @@ public interface RecordDAO {
 	// 팀 순위를 위한 경기결과 DB 호출
 	ArrayList<EventDTO> teamTable(Connection con) throws SQLException;
 
-	// 전체 타자 기록 순위 DB 호출
-	
-	// 전체 투수 기록 순위 DB 호출
-
 	// 선수정보 DB 호출
 	PlayerDTO playerInfo(String playerCode, Connection con) throws SQLException;
 	// 타자 성적 DB 호출
@@ -31,9 +27,6 @@ public interface RecordDAO {
 	PitcherDTO pitcherStat(String playerCode, Connection con) throws SQLException;
 	// 투수 최근 10경기 성적 DB 호출
 	ArrayList<PitcherDTO> pitcherLastStat(String playerCode, Connection con) throws SQLException;
-
-	
-	
 	
 	// 오늘 경기 결과 DB Insert
 	int dailyRecord(ArrayList<EventDTO> list, Connection con) throws SQLException;
@@ -44,8 +37,6 @@ public interface RecordDAO {
 	int gamePoint(ArrayList<MyTeamDTO> list, Connection con) throws SQLException;
 	// 내 게임 포인트 누적 저장 update
 	int memberPoint(Connection con) throws SQLException;
-	
-	//	int playerRecord(ArrayList<RecordDTO> list, Connection con) throws SQLException;
 
 	
 }

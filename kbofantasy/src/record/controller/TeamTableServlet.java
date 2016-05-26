@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import record.dto.EventDTO;
 import record.service.RecordService;
 import record.service.RecordServiceImpl;
-// 경기일정/결과 서블릿
+// 팀 순위표 서블릿
 @WebServlet(name = "recordTeamTable", urlPatterns = { "/record/teamTable.do" })
 public class TeamTableServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
