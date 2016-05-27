@@ -1,4 +1,4 @@
-package timer;
+package updater;
 
 import java.util.Calendar;
 
@@ -12,7 +12,7 @@ import record.service.RecordServiceImpl;
 
 // DB 자동 업데이트 해주는 클래스(타이머 연결 예정)
 
-public class Timer {
+public class Updater {
 
 	public static void main(String[] args) throws ParseException {
 		// 어제 날짜 가져오기
