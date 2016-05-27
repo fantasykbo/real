@@ -132,17 +132,17 @@ public class Query {
 	public static String SCOUT_LIST1="select player_cd, back_no, player_nm, "
 			+ "team_cd, position_dt, hand, salary "
 			+ "from player_tb "
-			+ "where position_dt=? ";
+			+ "where position_dt=? order by point_sum desc";
 	
 	public static String SCOUT_LIST2="select player_cd, back_no, player_nm, "
 			+ "team_cd, position_dt, hand, salary "
 			+ "from player_tb "
-			+ "where position_dt=? or position_dt=? ";
+			+ "where position_dt=? or position_dt=? order by point_sum desc";
 	
 	public static String SCOUT_LIST3="select player_cd, back_no, player_nm, "
 			+ "team_cd, position_dt, hand, salary "
 			+ "from player_tb "
-			+ "where position_dt <>=?";
+			+ "where position_dt <>=? order by point_sum desc";
 
 	
 	

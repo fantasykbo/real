@@ -1,3 +1,4 @@
+<%@page import="com.google.gson.annotations.JsonAdapter"%>
 <%@page import="game.dto.GamePlayerDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="member.dto.KBOLoginDTO"%>
@@ -26,7 +27,7 @@
 	KBOLoginDTO user= (KBOLoginDTO)session.getAttribute("login");
 	ArrayList<GamePlayerDTO> mypinfolist = (ArrayList<GamePlayerDTO>)request.getAttribute("mypinfolist"); 
 	int member_cd= (int)request.getAttribute("member_cd");
-	
+
 		GamePlayerDTO spdto = mypinfolist.get(0);
 		GamePlayerDTO rpdto = mypinfolist.get(1);
 		GamePlayerDTO dhdto = mypinfolist.get(2);
@@ -37,13 +38,7 @@
 		GamePlayerDTO ssdto = mypinfolist.get(7);
 		GamePlayerDTO lfdto = mypinfolist.get(8);
 		GamePlayerDTO cfdto = mypinfolist.get(9);
-		GamePlayerDTO rfdto = mypinfolist.get(10);
-	
-	if(request.getAttribute("myscoutplayer")==null){
-	}else{
-		ArrayList<GamePlayerDTO> myscoutplayer = (ArrayList<GamePlayerDTO>)request.getAttribute("myscoutplayer"); 
-	}
-	
+		GamePlayerDTO rfdto = mypinfolist.get(10);	
 %>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -58,308 +53,116 @@
  		var month = 0;
 		var prevMonth = month - 1;
  		var nextMonth = month + 1;
- 		
- 		if(prevMonth >= 4) {
- 			$("#prevMonth").attr("href", "/kbofantasy/game.do?member_cd=<%=member_cd%>&game_dt=" + prev_game_dt + "pathurl=/game/myTeam.jsp");
- 		} else {
- 			$("#prevMonth").attr("href", "javascript:alert('이전 경기가 없습니다.')");
- 		}
- 		if(nextMonth <= 9) {
-			$("#nextMonth").attr("href", "/kbofantasy/game.do?member_cd=<%=member_cd%>&game_dt=" + next_game_dt + "pathurl=/game/myTeam.jsp");
- 		} else {
- 			$("#nextMonth").attr("href", "javascript:alert('다음 경기가 없습니다.')");
- 		}
+
 		
 		// 버튼 클릭 액션
-		$("#rollback").on("click", function() {
-			alert("복구");
-		});
-
-		$("#out").on("click", function() {
-			alert("방출");
-		});
-
 		$("#save").on("click", function() {
 			alert("저장");
 		});
-
-		$("#setcap").on("click", function() {
-			alert("캡틴설정");
-		});
 		
 		$(".player").on("click", function() {
-			$(":hidden").show();
+			$("#selection").show();
 		});
 		
 		$("#close").on("click", function() {
 			$("#selection").hide();
 		});
 		
+		$("#select_p").on("click", function() {
+			$("#selection").hide();
+		});
+		
 		$("#sp").on("click", function() {
 			//에이작스동작
-			alert("동작");
-			sp();			
+			position("P");			
 		});
 		
 		$("#rp").on("click", function() {
-			alert("동작");
-			rp();			
+			//에이작스동작
+			position("P");			
 		});
 		
 		$("#c").on("click", function() {
 			//에이작스동작
-			alert("동작");
-			c();			
+			position("C");			
 		});
 		
 		$("#b1").on("click", function() {
 			//에이작스동작
-			alert("동작");
-			b1();			
+			position("1B");			
 		});
 		
 		$("#b2").on("click", function() {
 			//에이작스동작
-			alert("동작");
-			b2();			
+			position("2B");			
 		});
 		
 		$("#b3").on("click", function() {
 			//에이작스동작
-			alert("동작");
-			b3();			
+			position("3B");			
 		});
 		
 		$("#ss").on("click", function() {
 			//에이작스동작
-			alert("동작");
-			ss();			
+			position("SS");			
 		});
 		
 		$("#lf").on("click", function() {
 			//에이작스동작
-			alert("동작");
-			lf();			
+			position("LF");			
 		});
 		
 		$("#cf").on("click", function() {
 			//에이작스동작
-			alert("동작");
-			cf();
+			position("CF");
 		});
 		
 		$("#rf").on("click", function() {
 			//에이작스동작
-			alert("동작");
-			rf();			
+			position("RF");			
 		});
 		
 		$("#dh").on("click", function() {
 			//에이작스동작
-			alert("동작");
-			dh();
+			position("DH");
 		});			
 	});
 	
-	function sp() {
+	function setPlayer(){
+		alert('준비 중 입니다.');
+	}
+	
+	function position(position_dt){
+		
 		xhr = new XMLHttpRequest();
-		position_dt = "P";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
+		xhr.onreadystatechange = updatePlayer;
 		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send("position_dt="+position_dt);
+		$("#player_list").empty();
 	}
-	
-	function rp() {
-		xhr = new XMLHttpRequest();
-		position_dt = "P";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
-		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
-	}
-	
-	function c() {
-		xhr = new XMLHttpRequest();
-		position_dt = "C";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
-		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
-	}
-	
-	function b1() {
-		xhr = new XMLHttpRequest();
-		position_dt = "1B";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
-		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
-	}
-	
-	function b2() {
-		xhr = new XMLHttpRequest();
-		position_dt = "2B";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
-		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
-	}
-	
-	function b3() {
-		xhr = new XMLHttpRequest();
-		position_dt = "3B";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
-		xhr.open("POST", "/kbofantasy/scoutplayer.do", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
-	}
-	
-	function ss() {
-		xhr = new XMLHttpRequest();
-		position_dt = "SS";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
-		xhr.open("POST", "/kbofantasy/scoutplayer.do?", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
-	}
-	
-	function lf() {
-		xhr = new XMLHttpRequest();
-		position_dt = "LF";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
-		xhr.open("POST", "/kbofantasy/scoutplayer.do?", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
-	}
-	
-	function cf() {
-		xhr = new XMLHttpRequest();
-		position_dt = "CF";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
-		xhr.open("POST", "/kbofantasy/scoutplayer.do?", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
-	}
-	
-	function rf() {
-		xhr = new XMLHttpRequest();
-		position_dt = "RF";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
-		xhr.open("POST", "/kbofantasy/scoutplayer.do?", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
-	}
-	
-	function dh() {
-		xhr = new XMLHttpRequest();
-		position_dt = "DH";
-		member_cd = '<%=member_cd%>';
-		mypinfolist = '<%=mypinfolist%>';
-		xhr.onreadystatechange = emailcheck;
-		xhr.open("POST", "/kbofantasy/scoutplayer.do?", true);
-		xhr.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
-		
-		xhr.send("position_dt="+position_dt,"member_cd="+member_cd,"mypinfolist="+mypinfolist);
-	}
-	
-	function emailcheck() {
+
+	function updatePlayer() {
 		console.log("상태값:" + xhr.readyState);
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			/*  document.getElementById("#player_list").innerHTML = xhr.responseText; */
-			myscoutplayer = xhr.responseText;
+			json = JSON.parse(xhr.responseText);
+			console.log(json);
+			txt = xhr.responseText;
+			json = JSON.parse(txt);
+			console.log(txt);
 			text ="";
-			<%-- text += "<tr><td><img src='http://www.koreabaseball.com/FILE/person/middle/<%= myscoutplayer.get(i).getPlayer_Cd() %>.jpg' width='64' height='68'/></td>" --%>
-			text += "<tr><td>"+myscoutplayer.get(0).getPlayer_Name()+"</td>"
-			text += "<td>" + myscoutplayer.get(0).getPosition_Dt() + "</td>"
-			text += "<td>" + myscoutplayer.get(0).getSalary() + "</td>"
-			text += "<td>" + myscoutplayer.get(0).getTeam_Cd() + "</td>"
-			text += "<td>" + myscoutplayer.get(0).getHand() + "</td></tr>"
-			$("#player_list").append(text);
+			
+			for(i=0; i<json.length; i++){			
+			text += "<tr><td><img src=http://www.koreabaseball.com/FILE/person/middle/"+json[i].player_Cd+".jpg width=50 height=60></td>"
+			text += "<td><a href=javascript:setPlayer()>"+json[i].player_Name+"</a></td>"
+			text += "<td>" + json[i].position_Dt + "</td>"
+			text += "<td>" + json[i].team_Cd + "</td>"
+			text += "<td>" + json[i].salary + "</td>"
+			text += "<td>" + json[i].hand + "</td></tr>"			
+			}
+			$("#player_list").append(text); 
 		}
-
 	}
-	
-	function selectList(myscoutplayer){
-		
-
-		/*  
-			System.out.println(myscoutplayer.get(i).getPlayer_Cd());
-			System.out.println(myscoutplayer.get(i).getPlayer_Name());
-			System.out.println(myscoutplayer.get(i).getPosition_Dt());
-			System.out.println(myscoutplayer.get(i).getSalary());
-			System.out.println(myscoutplayer.get(i).getTeam_Cd());
-			System.out.println(myscoutplayer.get(i).getHand()); */
-		/* for(i=0;i<myscoutplayer.length;i++){ */
-			text ="";
-			<%-- text += "<tr><td><img src='http://www.koreabaseball.com/FILE/person/middle/<%= myscoutplayer.get(i).getPlayer_Cd() %>.jpg' width='64' height='68'/></td>" --%>
-			text += "<tr><td>"+myscoutplayer.get(0).getPlayer_Name()+"</td>"
-			text += "<td>" + myscoutplayer.get(0).getPosition_Dt() + "</td>"
-			text += "<td>" + myscoutplayer.get(0).getSalary() + "</td>"
-			text += "<td>" + myscoutplayer.get(0).getTeam_Cd() + "</td>"
-			text += "<td>" + myscoutplayer.get(0).getHand() + "</td></tr>"
-			$("#player_list").append(text);
-		}
-	/* function selectList(text){
-		ArrayList<GamePlayerDTO> myscoutplayer = text;
-		for(i=0; i<myscoutplayer.length; i++){
-			ap_text ="";
-			ap_text += "<tr><td>" + myscoutplayer. + "</td>"
-			ap_text += "<td>" + away_pitcher.inn + "</td>"
-			ap_text += "<td>" + away_pitcher.ballCount + "</td>"
-			ap_text += "<td>" + away_pitcher.hit + "</td>"
-			ap_text += "<td>" + away_pitcher.hr + "</td>"
-			ap_text += "<td>" + away_pitcher.bb + "</td>"
-			ap_text += "<td>" + away_pitcher.kk + "</td>"
-			ap_text += "<td>" + away_pitcher.run + "</td>"
-			ap_text += "<td>" + away_pitcher.er + "</td>"
-			ap_text += "<td>" + away_pitcher.todayEra + "</td>"
-			ap_text += "<td>" + away_pitcher.seasonEra + "</td>"
-			ap_text += "<td>" + away_pitcher.vsEra + "</td></tr>"
-			$("#ap_body").append(ap_text);
-		}
-	} */
 </script>
 
 	<div class="section">
@@ -371,9 +174,9 @@
 					</div>
 					<div id="gamecontent">
 					<ul class="lead pager">
-						<li><a id="prevMonth" href="#">← Prev</a></li>
+						<li><a id="prevMonth" href="javascript:alert('준비 중 입니다.')">← Prev</a></li>
 						<span id="today"></span>
-						<li><a a id="nextMonth" href="#">Next →</a></li>
+						<li><a a id="nextMonth" href="javascript:alert('준비 중 입니다.')">Next →</a></li>
 							<li id="btn"><span id="save" class="c_btn">라인업 저장</span></li>
 						</ul>
 						<div id="userinfo">
@@ -457,18 +260,23 @@
 								<div class="title">
 									선수선택<span id="close">x</span>
 								</div>
-								<div class="player_list" id="player_list">
-									<!-- <a class="btn btn-primary dropdown-toggle"
-										data-toggle="dropdown"> Dropdown <span
-										class="fa fa-caret-down"></span>
-									</a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="#">Action</a></li>
-									</ul>
-
-									<input type="text"><span><img
-										src="http://casspoint.mbcplus.com/img/lineup/ico_search2.png"
-										id="search_btn"></span> -->
+								<div style="overflow:scroll; height:90%;" class="col-md-12">
+								<h3 class="text-muted" id=""></h3>
+								<table
+									class="table table-bordered table-condensed table-striped">
+									<thead>
+										<tr>
+											<th>img</th>
+											<th>선수명</th>
+											<th>포지션</th>
+											<th>팀명</th>
+											<th>봉급</th>
+											<th>hand</th>
+										</tr>
+									</thead>
+									<tbody id="player_list">
+									</tbody>
+								</table>
 								</div>
 							</div>
 						</div>

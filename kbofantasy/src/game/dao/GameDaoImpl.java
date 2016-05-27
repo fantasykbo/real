@@ -81,7 +81,7 @@ public class GameDaoImpl implements GameDao {
 		GamePlayerDTO scoutlist = null;
 		System.out.println("dao포지션"+position_dt);
 		
-		if(position_dt=="1B" | position_dt=="2B" | position_dt=="3B"){
+		if(position_dt=="1B" | position_dt=="2B" | position_dt=="3B" | position_dt=="SS"){
 			PreparedStatement ptmt = con.prepareStatement(SCOUT_LIST2);
 			ptmt.setString(1, position_dt);
 			ptmt.setString(2, "IF");
@@ -121,8 +121,7 @@ public class GameDaoImpl implements GameDao {
 		// C(포수)나 SS(유격수)일경우 그포지션_dt를 가지고 있는 선수만 검색
 		PreparedStatement ptmt = con.prepareStatement(SCOUT_LIST1);
 		ptmt.setString(1, position_dt);
-		
-		
+
 		ResultSet rs = ptmt.executeQuery();
 		while(rs.next()){
 			scoutlist = new GamePlayerDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
